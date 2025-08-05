@@ -1,0 +1,78 @@
+{
+  "name": "Scientific Events",
+  "description": "Websites for conferences, workshops, and symposiums",
+  "icon": "🎯",
+  "commonFields": {
+    "event_name": {
+      "label": "Event Name",
+      "type": "text",
+      "required": true,
+      "placeholder": "International Conference on Neuroimaging"
+    },
+    "event_acronym": {
+      "label": "Event Acronym",
+      "type": "text",
+      "placeholder": "ICN2025"
+    },
+    "event_type": {
+      "label": "Event Type",
+      "type": "select",
+      "required": true,
+      "options": [
+        {"value": "conference", "label": "Conference"},
+        {"value": "workshop", "label": "Workshop"},
+        {"value": "symposium", "label": "Symposium"},
+        {"value": "seminar", "label": "Seminar Series"},
+        {"value": "hackathon", "label": "Hackathon"},
+        {"value": "summer_school", "label": "Summer School"}
+      ]
+    },
+    "event_dates": {
+      "label": "Event Dates",
+      "type": "daterange",
+      "required": true,
+      "placeholder": "March 15-17, 2025"
+    },
+    "location": {
+      "label": "Location",
+      "type": "text",
+      "required": true,
+      "placeholder": "Stanford University, CA"
+    },
+    "virtual_hybrid": {
+      "label": "Format",
+      "type": "select",
+      "options": [
+        {"value": "in_person", "label": "In-Person"},
+        {"value": "virtual", "label": "Virtual"},
+        {"value": "hybrid", "label": "Hybrid"}
+      ]
+    },
+    "description": {
+      "label": "Event Description",
+      "type": "textarea",
+      "required": true,
+      "maxLength": 1000,
+      "placeholder": "The International Conference on Neuroimaging brings together..."
+    },
+    "organizer_name": {
+      "label": "Main Organizer",
+      "type": "text",
+      "required": true,
+      "placeholder": "Dr. Jane Smith"
+    },
+    "organizer_institution": {
+      "label": "Organizing Institution",
+      "type": "text",
+      "required": true,
+      "placeholder": "Stanford University"
+    },
+    "contact_email": {
+      "label": "Contact Email",
+      "type": "email",
+      "required": true,
+      "placeholder": "info@neuroconf2025.org"
+    }
+  },
+  "themes": ["conference-site", "workshop-hub", "symposium-showcase"]
+}
