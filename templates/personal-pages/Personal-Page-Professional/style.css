@@ -1,0 +1,282 @@
+/* ===== Import Modern Fonts ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+/* ===== General Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Body Styling ===== */
+body {
+  font-family: 'Inter', sans-serif;
+  color: #222;
+  background: linear-gradient(180deg, #fdfbfb 0%, #ebedee 100%);
+  line-height: 1.6;
+}
+
+/* ===== Navigation ===== */
+header {
+  background: linear-gradient(90deg, #c8b5d6, #d4c2e0);
+  padding: 1rem 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 0 1rem;
+}
+
+nav ul li a {
+  color: black; /* CHANGED from white */
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: background 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  background: rgba(0, 0, 0, 0.1); /* Softer hover effect */
+}
+
+/* ===== Hero Section - Split Layout ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e8f1f5 50%, #d6e8f0 100%);
+  padding: 2rem;
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* half photo, half text */
+  gap: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  align-items: center;
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Large rectangular profile image */
+.hero img.profile-pic {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 0; /* remove circle */
+  object-fit: cover;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.hero img.profile-pic:hover {
+  transform: scale(1.02);
+}
+
+.hero-content {
+  text-align: left;
+  padding: 2rem 0;
+  margin-left: 3rem; /* move text further right */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 400;
+  margin-bottom: 1rem;
+  color: #d4896b;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.hero .subtitle {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  color: #8b6f47;
+  margin-bottom: 3rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.hero-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.hero-nav a {
+  color: #8b6f47;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(139, 111, 71, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.hero-nav a:hover {
+  color: #d4896b;
+  border-bottom-color: #d4896b;
+  transform: translateX(10px);
+}
+
+.hero-nav a::after {
+  content: '→';
+  position: absolute;
+  right: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hero-nav a:hover::after {
+  opacity: 1;
+}
+
+/* ===== Section Styling ===== */
+.section {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.section h1, .section h2 {
+  font-family: 'Playfair Display', serif;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.section p, .section li {
+  color: #555;
+}
+
+.section ul {
+  padding-left: 1.2rem;
+}
+
+/* ===== Footer ===== */
+footer {
+  background: #222;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.footer-links {
+  margin-top: 0.5rem;
+}
+
+.footer-links a {
+  color: #a1c4fd;
+  margin: 0 0.5rem;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Blog Post Styling ===== */
+article {
+  background: #fafafa;
+  border-left: 5px solid #6a11cb;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+
+article h2 {
+  margin-bottom: 0.5rem;
+}
+
+/* ===== Buttons (Optional for links) ===== */
+a.button {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: white;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+a.button:hover {
+  background: linear-gradient(90deg, #2575fc, #6a11cb);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 1024px) {
+  .hero-container {
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+  
+  .hero img.profile-pic {
+    max-width: 100%;
+  }
+
+  .hero-content {
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding: 3rem 1rem;
+  }
+
+  .hero-container {
+    gap: 3rem;
+    text-align: center;
+  }
+  
+  .hero img.profile-pic {
+    width: 100%;
+    height: auto;
+  }
+  
+  .hero-nav {
+    align-items: center;
+  }
+  
+  nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* ===== Smooth Scroll ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== Additional Styling for Content Sections ===== */
+.content-wrapper {
+  background: linear-gradient(180deg, #fdfbfb 0%, #ebedee 100%);
+  min-height: 100vh;
+  padding: 2rem 0;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ===== Meta & SEO ===== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Research Website" />
+  <meta name="author" content="Your Name" />
+
+  <!-- ===== Title ===== -->
+  <title>Your Name | Research Website</title>
+
+  <!-- ===== Fonts & Styles ===== -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== Header / Navigation ===== -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Hero Section ===== -->
+  <section class="hero">
+    <div class="hero-container">
+
+      <!-- Large Photo Left -->
+      <div class="hero-image">
+        <img src="profilepic.jpg" alt="Profile portrait" class="profile-pic-large" />
+      </div>
+
+      <!-- Name / Title / Position Right -->
+      <div class="hero-content" style="margin-left: 3rem;"> <!-- moved further right -->
+        <h1>Your Name</h1>
+        <div class="subtitle">Your Title or Position</div>
+        <p>Your Research Focus</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Welcome Intro ===== -->
+  <section class="section">
+    <h2>Welcome</h2>
+    <p>Welcome to my professional research website. I explore [brief research summary or focus area].</p>
+  </section>
+
+  <!-- ===== Latest Updates ===== -->
+  <section class="section">
+    <h2>Latest Updates</h2>
+    <ul>
+      <li><strong>Month Year:</strong> Presented at [Conference/Event Name].</li>
+      <li><strong>Month Year:</strong> Paper accepted in <em>[Journal Name]</em>.</li>
+      <li><strong>Month Year:</strong> Started [new project or initiative].</li>
+    </ul>
+  </section>
+
+  <!-- ===== Quick Links ===== -->
+  <section class="section">
+    <h2>Quick Links</h2>
+    <ul>
+      <li><a href="about.html">Learn more about me</a></li>
+      <li><a href="research.html">Explore my research projects</a></li>
+      <li><a href="publications.html">Read my publications</a></li>
+      <li><a href="cv.pdf" target="_blank">Download my CV</a></li>
+      <li><a href="contact.html">Get in touch</a></li>
+    </ul>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="cv.pdf" target="_blank">CV</a>
+      <a href="#" target="_blank">LinkedIn</a>
+      <a href="#" target="_blank">GitHub</a>
+      <a href="#" target="_blank">Lab Website</a>
+      <a href="mailto:youremail@example.com">Email</a>
+      <a href="#" target="_blank">Bluesky</a>
+    </div>
+  </footer>
+
+  <script>
+    // Auto-update year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

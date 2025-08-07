@@ -1,38 +1,59 @@
 {
-  "projectName": "NeuroSites",
-  "projectOwner": "NeuroHackademy2025",
+  "projectName": "neurosites",
+  "projectOwner": "chloehampson",
   "repoType": "github",
   "repoHost": "https://github.com",
   "files": [
-    "CONTRIBUTORS.md"
+    "CONTRIBUTORS.md",
+    "README.md"
   ],
   "imageSize": 100,
-  "commit": true,
-  "contributorsPerLine": 7,
+  "commit": false,
+  "commitConvention": "angular",
   "contributors": [
     {
-      "login": "chlohamp",
+      "login": "chloehampson",
       "name": "Chloe Hampson",
-      "avatar_url": "https://avatars.githubusercontent.com/u/000000?v=4",
-      "profile": "https://github.com/chlohamp",
+      "avatar_url": "https://avatars.githubusercontent.com/u/chloehampson?v=4",
+      "profile": "https://github.com/chloehampson",
       "contributions": [
+        "maintenance",
         "code",
-        "design",
+        "ideas",
         "projectManagement"
       ]
     },
     {
-      "login": "Jupablo93",
-      "name": "Jupablo93",
-      "avatar_url": "https://avatars.githubusercontent.com/u/203133881?v=4",
-      "profile": "https://github.com/Jupablo93",
+      "login": "juanpgarcia",
+      "name": "Juan P. Garcia",
+      "avatar_url": "https://avatars.githubusercontent.com/u/juanpgarcia?v=4",
+      "profile": "https://github.com/juanpgarcia",
       "contributions": [
         "code",
-        "design",
-        "projectManagement"
+        "review"
+      ]
+    },
+    {
+      "login": "ishachhabra",
+      "name": "Isha Chhabra",
+      "avatar_url": "https://avatars.githubusercontent.com/u/ishachhabra?v=4",
+      "profile": "https://github.com/ishachhabra",
+      "contributions": [
+        "code",
+        "research"
+      ]
+    },
+    {
+      "login": "menghanyang",
+      "name": "Menghan Yang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/menghanyang?v=4",
+      "profile": "https://github.com/menghanyang",
+      "contributions": [
+        "code",
+        "data"
       ]
     }
   ],
-  "commitType": "docs",
-  "commitConvention": "angular"
+  "contributorsPerLine": 7,
+  "skipCi": true
 }
