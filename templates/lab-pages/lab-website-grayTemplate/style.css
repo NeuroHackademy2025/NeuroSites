@@ -1,0 +1,9 @@
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+.hero { background: #f4f4f4; padding: 2rem; text-align: center; }
+.navbar ul { list-style-type: none; padding: 0; display: flex; justify-content: center; background: #333; }
+.navbar li { margin: 0 15px; }
+.navbar a { color: white; text-decoration: none; padding: 14px 20px; display: inline-block; }
+.container { padding: 2rem; }
+.card-container { display: flex; gap: 1rem; flex-wrap: wrap; }
+.card { border: 1px solid #ccc; padding: 1rem; width: 200px; text-align: center; }
+footer { background: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
