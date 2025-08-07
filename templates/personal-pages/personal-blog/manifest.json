@@ -1,0 +1,21 @@
+{
+  "theme_name": "Personal Blog Template",
+  "version": "1.0",
+  "author": "Your Name",
+  "description": "A minimal and clean personal blog for scientists, with separate pages for about, blog, contact, and post.",
+  "placeholders": [
+    "{{YOUR_NAME}}",
+    "{{SHORT_BIO}}",
+    "{{BLOG_POSTS}}",
+    "{{EMAIL}}",
+    "{{SOCIAL_LINKS}}"
+  ],
+  "pages": [
+    "index.html",
+    "about.html",
+    "blog.html",
+    "post.html",
+    "contact.html"
+  ],
+  "preview": "personal-blog/preview.png"
+}
