@@ -588,7 +588,7 @@
                                     id: templateDir.name,
                                     title: templateDir.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
                                     description: `A ${categoryDir.name.replace('-', ' ')} template for neuroscience websites.`,
-                                    category: categoryDir.name.replace('-', ''),
+                                    category: categoryDir.name.replace('-', '').replace(/([A-Z])/g, ' $1').trim(),
                                     tags: [],
                                     preview: null,
                                     demoUrl: `templates/${categoryDir.name}/${templateDir.name}/`,
