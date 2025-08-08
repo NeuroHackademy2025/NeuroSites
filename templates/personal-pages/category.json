@@ -1,0 +1,158 @@
+{
+  "name": "Personal Pages",
+  "description": "Individual researcher profiles and portfolios",
+  "icon": ":bust_in_silhouette:",
+  "commonFields": {
+    "full_name": {
+      "label": "Full Name",
+      "type": "text",
+      "required": true
+    },
+    "title": {
+      "label": "Title/Position",
+      "type": "text",
+      "placeholder": "PhD Student, Postdoc, Assistant Professor"
+    },
+    "bio": {
+      "label": "Bio",
+      "type": "textarea",
+      "required": true
+    },
+    "cv_file": {
+      "label": "CV Link",
+      "type": "url",
+      "placeholder": "https://example.com/cv.pdf"
+    }
+  },
+  "pages": {
+    "home": {
+      "label": "Home",
+      "sections": {
+        "welcome": {
+          "label": "Welcome Message",
+          "type": "textarea",
+          "placeholder": "Welcome to my professional website..."
+        },
+        "latest_updates": {
+          "label": "Latest Updates",
+          "type": "list",
+          "item_label": "Update"
+        },
+        "quick_links": {
+          "label": "Quick Links",
+          "type": "list",
+          "item_label": "Link"
+        }
+      }
+    },
+    "about": {
+      "label": "About",
+      "sections": {
+        "about_me": {
+          "label": "About Me",
+          "type": "textarea"
+        },
+        "education": {
+          "label": "Education",
+          "type": "list",
+          "item_label": "Degree"
+        }
+      }
+    },
+    "research": {
+      "label": "Research",
+      "sections": {
+        "research_interests": {
+          "label": "Research Interests",
+          "type": "textarea"
+        },
+        "current_projects": {
+          "label": "Current Projects",
+          "type": "list",
+          "item_label": "Project"
+        }
+      }
+    },
+    "publications": {
+      "label": "Publications",
+      "sections": {
+        "posters": {
+          "label": "Posters",
+          "type": "list",
+          "item_label": "Poster"
+        },
+        "publications": {
+          "label": "Publications",
+          "type": "list",
+          "item_label": "Publication"
+        }
+      }
+    },
+    "cv": {
+      "label": "CV",
+      "sections": {
+        "awards": {
+          "label": "Awards",
+          "type": "list",
+          "item_label": "Award"
+        },
+        "research_experience": {
+          "label": "Research Experience",
+          "type": "list",
+          "item_label": "Experience"
+        },
+        "work_experience": {
+          "label": "Work Experience",
+          "type": "list",
+          "item_label": "Job"
+        },
+        "volunteer_experience": {
+          "label": "Volunteer Experience",
+          "type": "list",
+          "item_label": "Role"
+        },
+        "certifications_skills": {
+          "label": "Certifications & Skills",
+          "type": "list",
+          "item_label": "Skill/Certification"
+        }
+      }
+    },
+    "contact": {
+      "label": "Contact",
+      "sections": {
+        "email": {
+          "label": "Email",
+          "type": "text"
+        },
+        "linkedin": {
+          "label": "LinkedIn",
+          "type": "url"
+        },
+        "github": {
+          "label": "GitHub",
+          "type": "url"
+        },
+        "lab_website": {
+          "label": "Lab Website",
+          "type": "url"
+        },
+        "bluesky": {
+          "label": "Bluesky",
+          "type": "url"
+        }
+      }
+    },
+    "blog": {
+      "label": "Blog",
+      "sections": {
+        "posts": {
+          "label": "Blog Posts",
+          "type": "list",
+          "item_label": "Post"
+        }
+      }
+    }
+  },
+  "themes": ["personal-profile", "researcher-portfolio", "postdoc-profile"]
+}

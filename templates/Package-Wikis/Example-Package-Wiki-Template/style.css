@@ -1,0 +1,39 @@
+/* Basic styles for the wiki */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+header {
+  background-color: #007acc;
+  color: white;
+  padding: 1rem;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav a {
+  margin-right: 1rem;
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 2rem;
+}
+
+footer {
+  background-color: #e9ecef;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}

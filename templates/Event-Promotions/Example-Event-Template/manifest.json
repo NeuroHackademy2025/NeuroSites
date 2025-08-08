@@ -1,0 +1,9 @@
+{
+  "name": "Hackathon 2025",
+  "short_name": "Hackathon",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "description": "Promotional page for the Hackathon 2025 event.",
+  "icons": []
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="About Me" />
+  <title>About | Research Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="section">
+  <h1>About Me</h1>
+  <p>[Brief professional bio. Replace with your own introduction, background, and areas of expertise.]</p>
+</section>
+
+<section class="section">
+  <h2>Education</h2>
+  <ul>
+    <li><strong>[Degree]</strong> — [University], [Year]</li>
+    <li><strong>[Degree]</strong> — [University], [Year]</li>
+  </ul>
+</section>
+
+<footer>
+  <p>&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+</footer>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

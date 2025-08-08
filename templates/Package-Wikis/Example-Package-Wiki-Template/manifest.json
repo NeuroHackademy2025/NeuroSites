@@ -1,0 +1,9 @@
+{
+  "name": "Package Wiki",
+  "short_name": "Wiki",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007acc",
+  "description": "Documentation and tutorials for Package Name"
+}

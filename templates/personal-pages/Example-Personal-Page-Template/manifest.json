@@ -1,0 +1,54 @@
+{
+  "siteName": "Research Website",
+  "pages": [
+    {
+      "name": "Home",
+      "description": "Welcome to the website, latest updates, and quick links"
+    },
+    {
+      "name": "About",
+      "sections": [
+        "About Me",
+        "Education"
+      ]
+    },
+    {
+      "name": "Research",
+      "sections": [
+        "Research Interests",
+        "Current Projects"
+      ]
+    },
+    {
+      "name": "Publications",
+      "sections": [
+        "Posters",
+        "Publications"
+      ]
+    },
+    {
+      "name": "CV",
+      "sections": [
+        "Awards",
+        "Research Experiences",
+        "Work Experience",
+        "Volunteer Experiences",
+        "Certifications and Skills"
+      ]
+    },
+    {
+      "name": "Contact",
+      "sections": [
+        "Email",
+        "LinkedIn",
+        "GitHub",
+        "Lab Website",
+        "Bluesky"
+      ]
+    },
+    {
+      "name": "Blog",
+      "description": "Articles, updates, and reflections"
+    }
+  ]
+}

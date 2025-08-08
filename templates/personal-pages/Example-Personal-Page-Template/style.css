@@ -1,0 +1,149 @@
+/* ===== General Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Body Styling ===== */
+body {
+  font-family: 'Inter', sans-serif;
+  color: #222;
+  background: linear-gradient(180deg, #fdfbfb 0%, #ebedee 100%);
+  line-height: 1.6;
+}
+
+/* ===== Navigation ===== */
+header {
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  padding: 1rem 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 0 1rem;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: background 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(120deg, #a1c4fd, #c2e9fb);
+}
+
+.hero img.profile-pic {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: #444;
+}
+
+/* ===== Section Styling ===== */
+.section {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.section h1, .section h2 {
+  font-family: 'Playfair Display', serif;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.section p, .section li {
+  color: #555;
+}
+
+.section ul {
+  padding-left: 1.2rem;
+}
+
+/* ===== Footer ===== */
+footer {
+  background: #222;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.footer-links {
+  margin-top: 0.5rem;
+}
+
+.footer-links a {
+  color: #a1c4fd;
+  margin: 0 0.5rem;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Blog Post Styling ===== */
+article {
+  background: #fafafa;
+  border-left: 5px solid #6a11cb;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+
+article h2 {
+  margin-bottom: 0.5rem;
+}
+
+/* ===== Buttons (Optional for links) ===== */
+a.button {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: white;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+a.button:hover {
+  background: linear-gradient(90deg, #2575fc, #6a11cb);
+}

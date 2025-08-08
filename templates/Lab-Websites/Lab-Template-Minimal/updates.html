@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lab Updates | {{ LAB_NAME }}</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="hero">
+    <h1 class="lab-name">{{ LAB_NAME }}</h1>
+    <p class="pi-name">Directed by {{ PI_NAME }}</p>
+    <p class="affiliation">{{ DEPARTMENT }}, {{ INSTITUTION }}</p>
+
+    <!-- Navigation -->
+    <nav class="lab-nav">
+      <a href="index.html">Home</a>
+      <a href="people.html">People</a>
+      <a href="updates.html">Lab Updates</a>
+      <a href="publications.html">Publications</a>
+      <a href="software.html">Software</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h2>Lab Updates</h2>
+    <ul>
+      <li><strong>August 2025:</strong> Our new paper on inter-subject alignment was accepted to <em>Nature Communications</em>!</li>
+      <li><strong>July 2025:</strong> Welcome to new lab members Jamie and Riley!</li>
+      <li><strong>June 2025:</strong> PI gave an invited talk at CNS 2025 in San Francisco.</li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© {{ YEAR }} {{ LAB_NAME }}</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="CV" />
+  <title>CV | Research Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="cv.html" class="active">CV</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="section">
+  <h1>Awards</h1>
+  <ul>
+    <li>[Award Name] — [Year]</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>Research Experiences</h2>
+  <ul>
+    <li>[Position] — [Institution], [Dates]</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>Work Experience</h2>
+  <ul>
+    <li>[Role] — [Organization], [Dates]</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>Volunteer Experiences</h2>
+  <ul>
+    <li>[Role] — [Organization], [Dates]</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>Certifications & Skills</h2>
+  <ul>
+    <li>[Certification / Skill]</li>
+  </ul>
+</section>
+
+<footer>
+  <p>&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+</footer>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

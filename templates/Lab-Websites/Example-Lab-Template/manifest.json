@@ -1,0 +1,21 @@
+// manifest.json for theme-specific configuration
+{
+  "name": "Lab Website Template 1",
+  "description": "A simple, clean lab or event website template with speaker and program pages.",
+  "pages": {
+    "index": "index.html",
+    "speakers": "speakers.html",
+    "program": "program.html"
+  },
+  "assets": {
+    "style": "style.css",
+    "script": "script.js",
+    "preview": "preview.png"
+  },
+  "placeholders": [
+    "{{LAB_NAME}}",
+    "{{INTRODUCTION}}",
+    "{{KEYNOTE_SPEAKERS}}",
+    "{{SCHEDULE}}"
+  ]
+}

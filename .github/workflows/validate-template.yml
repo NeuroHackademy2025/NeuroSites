@@ -27,13 +27,63 @@ jobs:
               continue
             fi
 
+            echo "🔍 Validating template: $dir"
+
             # Check required files inside template folder
-            for file in README.md index.html style.css script.js; do
+            required_files=("README.md" "index.html")
+            for file in "${required_files[@]}"; do
               if [ ! -f "${dir}${file}" ]; then
-                echo "❌ Missing $file in $dir"
+                echo "❌ Missing required file: $file in $dir"
                 exit 1
               fi
             done
+
+            # Check for modularization - ensure CSS and JS are in separate files
+            css_found=false
+            js_found=false
+
+            # Look for any .css files in the template directory
+            if ls "${dir}"*.css 1> /dev/null 2>&1; then
+              css_found=true
+              echo "✅ Found CSS file(s) in $dir"
+            fi
+
+            # Look for any .js files in the template directory
+            if ls "${dir}"*.js 1> /dev/null 2>&1; then
+              js_found=true
+              echo "✅ Found JavaScript file(s) in $dir"
+            fi
+
+            # Validate modularization requirements
+            if [ "$css_found" = false ]; then
+              echo "❌ No CSS file found in $dir - templates must be modularized with separate CSS files"
+              exit 1
+            fi
+
+            if [ "$js_found" = false ]; then
+              echo "❌ No JavaScript file found in $dir - templates must be modularized with separate JS files"
+              exit 1
+            fi
+
+            # Check that index.html properly links to external CSS and JS files
+            if ! grep -q 'rel="stylesheet"' "${dir}index.html"; then
+              echo "❌ index.html in $dir does not link to external CSS file(s)"
+              exit 1
+            fi
+
+            if ! grep -q '<script.*src=' "${dir}index.html"; then
+              echo "❌ index.html in $dir does not link to external JavaScript file(s)"
+              exit 1
+            fi
+
+            # Check for inline styles and scripts (discourage non-modular approach)
+            if grep -q '<style>' "${dir}index.html"; then
+              echo "⚠️  Warning: Found inline <style> tags in ${dir}index.html - consider moving all styles to external CSS files"
+            fi
+
+            if grep -q '<script>' "${dir}index.html" && ! grep -q '<script.*src=' "${dir}index.html"; then
+              echo "⚠️  Warning: Found inline <script> tags in ${dir}index.html - consider moving all JavaScript to external JS files"
+            fi
 
             # Check that assets/images folder exists inside the template folder
             if [ ! -d "${dir}assets/images" ]; then
@@ -44,10 +94,19 @@ jobs:
             # Check folder name format (lowercase + hyphen)
             folder_name=$(basename "$dir")
             if [[ ! "$folder_name" =~ ^[a-z0-9-]+$ ]]; then
-              echo "❌ Folder name '$folder_name' is invalid (use lowercase + hyphens)"
+              echo "❌ Folder name '$folder_name' is invalid (use lowercase letters, numbers, and hyphens only)"
               exit 1
             fi
+
+            echo "✅ Template $dir passed all validation checks!"
           done
 
-          echo "✅ All templates passed structure check!"
-
+          echo ""
+          echo "🎉 All templates passed structure validation!"
+          echo ""
+          echo "Validation summary:"
+          echo "- ✅ Required files (README.md, index.html) present"
+          echo "- ✅ Proper modularization (separate .css and .js files)"
+          echo "- ✅ External file linking in index.html"
+          echo "- ✅ Assets/images folder structure"
+          echo "- ✅ Naming conventions followed"

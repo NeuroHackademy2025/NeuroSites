@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{ LAB_NAME }}</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="hero">
+    <h1 class="lab-name">{{ LAB_NAME }}</h1>
+    <p class="pi-name">Directed by {{ PI_NAME }}</p>
+    <p class="affiliation">{{ DEPARTMENT }}, {{ INSTITUTION }}</p>
+
+    <!-- Nav moved inside header -->
+    <nav class="lab-nav">
+      <a href="index.html">Home</a>
+      <a href="people.html">People</a>
+      <a href="updates.html">Lab Updates</a>
+      <a href="publications.html">Publications</a>
+      <a href="software.html">Software</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+
+    <section>
+      <h2>Contact</h2>
+      <p>For inquiries, please contact:</p>
+      <p><strong>{{ PI_NAME }}</strong><br>
+      {{ LAB_EMAIL }}<br>
+      {{ DEPARTMENT }}, {{ INSTITUTION }}</p>
+      <p>We are currently recruiting graduate students and postdocs. Reach out if you're interested in joining our lab!</p>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>© {{ YEAR }} {{ LAB_NAME }}</p>
+  </footer>
+
+</body>
+</html>

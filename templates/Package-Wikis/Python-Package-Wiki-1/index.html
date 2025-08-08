@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Python Neuroimaging Package</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/images/favicon.ico" />
+    <meta name="description" content="Documentation and usage examples for a neuroimaging Python package." />
+</head>
+<body>
+
+<header>
+    <img src="assets/images/logo.png" alt="Package Logo" class="logo" />
+    <h1>Python Neuroimaging Package</h1>
+    <p>Powerful tools for analyzing 3D and 4D neuroimaging data</p>
+    <a href="https://github.com/username/package" class="btn">View on GitHub</a>
+</header>
+
+<nav>
+    <a href="#install">Install</a>
+    <a href="#usage">Usage</a>
+    <a href="#features">Features</a>
+    <a href="#docs">Docs</a>
+</nav>
+
+<main>
+    <section id="install">
+        <h2>Installation</h2>
+        <div class="code-block">
+            <pre><code>pip install neuroimaging-package</code></pre>
+            <button class="copy-btn">Copy</button>
+        </div>
+    </section>
+
+    <section id="usage">
+        <h2>Usage Examples</h2>
+
+        <div class="example-block">
+            <h3>Visualizing a 3D Brain Volume</h3>
+            <p>This example shows how to load and display a structural MRI scan using the <code>plot_anat</code> function.</p>
+            <div class="code-block">
+<pre><code>from nilearn import plotting, datasets
+
+mni152 = datasets.load_mni152_template()
+plotting.plot_anat(mni152)
+</code></pre>
+                <button class="copy-btn">Copy</button>
+            </div>
+            <img src="assets/images/output_example1.png" alt="3D Brain Visualization" class="output-img" />
+        </div>
+
+        <div class="example-block">
+            <h3>Displaying Functional MRI Activation</h3>
+            <p>This snippet overlays statistical activation maps on the anatomical template.</p>
+            <div class="code-block">
+<pre><code>from nilearn import plotting, image
+
+stat_map = image.load_img('data/statistical_map.nii.gz')
+plotting.plot_stat_map(stat_map, threshold=3.0)
+</code></pre>
+                <button class="copy-btn">Copy</button>
+            </div>
+            <img src="assets/images/output_example2.png" alt="fMRI Activation Map" class="output-img" />
+        </div>
+    </section>
+
+    <section id="features">
+        <h2>Features</h2>
+        <ul>
+            <li>Load and visualize NIfTI neuroimaging data</li>
+            <li>Statistical map rendering with thresholding</li>
+            <li>Support for 3D and 4D datasets</li>
+        </ul>
+    </section>
+
+    <section id="docs">
+        <h2>Documentation</h2>
+        <p>Visit the <a href="https://your-docs-link.com" target="_blank">full documentation</a> for tutorials, API references, and data handling instructions.</p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Your Lab or Team | <a href="https://pypi.org/project/neuroimaging-package/">PyPI</a></p>
+</footer>
+
+<script>
+    const copyButtons = document.querySelectorAll(".copy-btn");
+    copyButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const code = btn.previousElementSibling.innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                btn.textContent = "Copied!";
+                setTimeout(() => (btn.textContent = "Copy"), 2000);
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Publications" />
+  <title>Publications | Research Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="publications.html" class="active">Publications</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="section">
+  <h1>Posters</h1>
+  <ul>
+    <li><strong>Poster Title 1</strong> — [Conference, Year]</li>
+    <li><strong>Poster Title 2</strong> — [Conference, Year]</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>Publications</h2>
+  <ul>
+    <li><strong>Paper Title 1</strong> — [Journal, Year]</li>
+    <li><strong>Paper Title 2</strong> — [Journal, Year]</li>
+  </ul>
+</section>
+
+<footer>
+  <p>&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+</footer>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

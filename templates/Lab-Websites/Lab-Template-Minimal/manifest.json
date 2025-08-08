@@ -1,0 +1,30 @@
+{
+  "name": "Minimal Stylish Lab Website",
+  "description": "A clean and modern lab website template with user-editable content sections.",
+  "pages": {
+    "index": "index.html",
+    "people": "people.html",
+    "updates": "updates.html",
+    "publications": "publications.html",
+    "software": "software.html",
+    "contact": "contact.html"
+  },
+  "assets": {
+    "style": "style.css",
+    "script": "script.js",
+    "preview": "preview.png"
+  },
+  "placeholders": [
+    "{{LAB_NAME}}",
+    "{{TAGLINE}}",
+    "{{INTRODUCTION}}",
+    "{{PEOPLE_LIST}}",
+    "{{NEWS_ITEMS}}",
+    "{{PUBLICATION_LIST}}",
+    "{{SOFTWARE_PACKAGES}}",
+    "{{CONTACT_NAME}}",
+    "{{EMAIL}}",
+    "{{RECRUITMENT_NEEDS}}",
+    "{{YEAR}}"
+  ]
+}
