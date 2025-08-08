@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{ LAB_NAME }} - Publications</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="hero">
+    <h1 class="lab-name">{{ LAB_NAME }}</h1>
+    <p class="pi-name">Directed by {{ PI_NAME }}</p>
+    <p class="affiliation">{{ DEPARTMENT }}, {{ INSTITUTION }}</p>
+
+    <!-- Navigation Bar -->
+    <nav class="lab-nav">
+      <a href="index.html">Home</a>
+      <a href="people.html">People</a>
+      <a href="updates.html">Lab Updates</a>
+      <a href="publications.html">Publications</a>
+      <a href="software.html">Software</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <section class="intro">
+      <h2>Publications</h2>
+      <h3>Journal Articles</h3>
+      <ul>
+        <li>Example, A., Smith, J., & Lee, K. (2025). Inter-subject alignment in naturalistic fMRI. <em>Nature Communications</em>.</li>
+        <li>Lee, K., Kim, J., & Example, A. (2024). Event segmentation during narrative comprehension. <em>Journal of Neuroscience</em>.</li>
+      </ul>
+
+      <h3>Conference Presentations</h3>
+      <ul>
+        <li>Riley, C., & Example, A. (2025, March). Memory encoding during co-viewing experiences. Talk presented at the <em>Cognitive Neuroscience Society</em>, San Francisco, CA.</li>
+        <li>Patel, S., & Example, A. (2024, July). Shared neural dynamics in movie-watching dyads. Poster presented at the <em>Organization for Human Brain Mapping</em>, Seoul, South Korea.</li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>
+    <p>© {{ YEAR }} {{ LAB_NAME }}</p>
+  </footer>
+
+</body>
+</html>

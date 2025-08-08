@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>People – {{ LAB_NAME }}</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Hero Header -->
+  <header class="hero">
+    <h1 class="lab-name">{{ LAB_NAME }}</h1>
+    <p class="pi-name">{{ TAGLINE }}</p>
+    <p class="affiliation">{{ DEPARTMENT }}, {{ INSTITUTION }}</p>
+
+    <!-- Styled Navigation -->
+    <nav class="lab-nav">
+      <a href="index.html">Home</a>
+      <a href="people.html">People</a>
+      <a href="updates.html">Lab Updates</a>
+      <a href="publications.html">Publications</a>
+      <a href="software.html">Software</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <h2>People</h2>
+
+    <!-- PI -->
+    <section class="person-section">
+      <h3>Principal Investigator</h3>
+      <div class="body-text">
+        <strong>Dr. Alex Example</strong><br/>
+        Professor of Psychology<br/>
+        <p>
+          Alex directs the {{ LAB_NAME }}, exploring how the brain supports social interaction and emotion.
+          They use fMRI, naturalistic stimuli, and computational modeling.
+        </p>
+      </div>
+    </section>
+
+    <!-- Current Lab Members -->
+    <section class="person-section">
+      <h3>Current Lab Members</h3>
+      <ul class="person-list">
+        <li>
+          <strong>Jamie Lee</strong> — PhD Student<br/>
+          <span class="body-text">Researches brain dynamics during movie watching and develops tools for narrative alignment.</span>
+        </li>
+        <li>
+          <strong>Taylor Smith</strong> — Research Assistant<br/>
+          <span class="body-text">Focuses on experimental design, data collection, and project coordination.</span>
+        </li>
+        <li>
+          <strong>Riley Chen</strong> — Undergraduate Researcher<br/>
+          <span class="body-text">Interested in memory and attention using EEG and behavioral data.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Alumni -->
+    <section class="person-section">
+      <h3>Lab Alumni</h3>
+      <ul class="person-list">
+        <li>
+          <strong>Jordan Kim</strong> — Now at Google Brain<br/>
+          <span class="body-text">Worked on modeling shared neural responses during social viewing.</span>
+        </li>
+        <li>
+          <strong>Samira Patel</strong> — PhD student at Stanford<br/>
+          <span class="body-text">Developed fMRI preprocessing pipelines and ISC analysis tools.</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© {{ YEAR }} {{ LAB_NAME }}</p>
+  </footer>
+
+</body>
+</html>
