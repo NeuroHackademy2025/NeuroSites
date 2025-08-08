@@ -1,711 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuroSites - Website Templates for Neuroscience</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuroSites - Website Templates for Neuroscience</title>
+  <style>
+    /* ====== Base (keeps your existing palette) ====== */
+    :root {
+      --bg: #101532;       /* your deep navy */
+      --fg: #fafdff;       /* your off-white */
+      --muted: rgba(250, 253, 255, 0.8);
+      --card: rgba(250, 253, 255, 0.1);
+      --shadow: rgba(16, 21, 50, 0.4);
+      --border: #e1e8ed;
+      --accent: #6288a7;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #101532;
-            background: #101532;
-            min-height: 100vh;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--fg);
+      background: var(--bg);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        header {
-            background: #101532;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(16, 21, 50, 0.4);
-            padding: 2rem 0 5rem 0;
-            margin-bottom: 3rem;
-            position: relative;
-        }
+    /* ====== Existing Header ====== */
+    header.site-header { /* renamed to avoid conflict with sticky header wrapper */
+      background: var(--bg);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px var(--shadow);
+      padding: 10rem 0 6.5rem 0; /* increased top padding from 2rem to 5rem */
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 1;
+    }
 
-        .header-content {
-            text-align: center;
-        }
+    .header-content { text-align: center; }
+    .logo-container { margin-bottom: .5rem; }
+    .logo { max-height: 400px; width: auto; margin: 0 auto; display: block; }
+    .subtitle { font-size: 1.2rem; color: var(--muted); margin-bottom: 2rem; }
 
-        .logo-container {
-            margin-bottom: 0.5rem;
-        }
+    .stats { display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; }
+    .stat { text-align: center; padding: 1rem; background: var(--card); border-radius: 10px; min-width: 120px; }
+    .stat-number { font-size: 2rem; font-weight: bold; color: var(--fg); }
+    .stat-label { font-size: .9rem; color: rgba(250, 253, 255, 0.7); }
 
-        .logo {
-            max-height: 400px;
-            width: auto;
-            margin: 0 auto;
-            display: block;
-        }
+    .scroll-indicator { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; color: rgba(250, 253, 255, 0.7); cursor: pointer; transition: all .3s ease; animation: bounce 2s infinite; z-index: 2; }
+    .scroll-indicator:hover { color: var(--accent); }
+    .scroll-arrow { font-size: 1.5rem; margin-bottom: .5rem; }
+    .scroll-text { font-size: .8rem; text-transform: uppercase; letter-spacing: 1px; }
+    @keyframes bounce { 0%,20%,50%,80%,100%{ transform: translateX(-50%) translateY(0);} 40%{ transform: translateX(-50%) translateY(-10px);} 60%{ transform: translateX(-50%) translateY(-5px);} }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: rgba(250, 253, 255, 0.8);
-            margin-bottom: 2rem;
-        }
+    /* ====== NEW: Sticky Floating Pill Nav with Dropdown Button ====== */
+    /* Wrapper that manages sticky state */
+    #stickyHeader { position: relative; z-index: 9999; }
 
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
+    /* Floating pill nav centered under the hero; shrinks on scroll */
+    #stickyHeader nav.pill {
+      position: fixed;
+      left: 0; right: 0; top: 50px;
+      width: 520px; height: 100px; margin: 0 auto;
+      display: flex; justify-content: center; align-items: center; gap: 8px;
+      padding: 0 20px;
+      background-color: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 200px; backdrop-filter: blur(8px);
+      transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1) .2s;
+    }
 
-        .stat {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(250, 253, 255, 0.1);
-            border-radius: 10px;
-            min-width: 120px;
-        }
+    #stickyHeader nav.pill a {
+      color: var(--fg); text-decoration: none; font-weight: 700; display: block;
+      padding: 10px 16px; line-height: 1; font-size: 14px; letter-spacing: 2px; text-transform: lowercase;
+      opacity: 1; transform: scale(1); transition: .4s opacity, .4s transform;
+    }
 
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #fafdff;
-        }
+    /* Circular menu button that appears when shrunk */
+    #openmenu {
+      -webkit-appearance: none; appearance: none; cursor: pointer; outline: 0; border: 0;
+      position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: auto;
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(5px);
+      display: flex; align-items: center; justify-content: center; gap: 6px; flex-direction: column;
+      transform: scale(0); transition: .3s transform ease .2s, border-color .3s;
+    }
+    #openmenu span { width: 40%; height: 2px; background: var(--fg); transform: scaleX(0); transition: .5s transform ease .1s, .2s margin; }
+    #openmenu:hover { border-color: rgba(255,255,255,.5); }
+    #openmenu:hover span { margin: 2px 0; }
 
-        .stat-label {
-            font-size: 0.9rem;
-            color: rgba(250, 253, 255, 0.7);
-        }
+    /* Sticky (scrolled) state shrinks the pill into a circle and hides links */
+    #stickyHeader.sticky nav.pill { top: 20px; width: 94px; height: 94px; padding: 0; }
+    #stickyHeader.sticky nav.pill a { opacity: 0; transform: scale(.4); pointer-events: none; }
+    #stickyHeader.sticky #openmenu { transform: scale(1); }
+    #stickyHeader.sticky #openmenu span { transform: scaleX(1); }
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: rgba(250, 253, 255, 0.7);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            animation: bounce 2s infinite;
-            z-index: 10;
-        }
+    /* Page blur/zoom when menu is open */
+    #page { position: relative; transition: 1s all ease-in-out; }
+    #page.menuopen { opacity: .6; filter: blur(16px); transform: scale(1.02); }
 
-        .scroll-indicator:hover {
-            color: #6288a7;
-        }
+    /* Fullscreen dropdown menu */
+    .dropdown-overlay { position: fixed; inset: 0; display: none; place-items: center; background: rgba(0,0,0,.6); z-index: 9998; }
+    .dropdown-overlay.active { display: grid; }
+    .dropdown-panel {
+      width: min(92vw, 720px);
+      background: rgba(16,21,50,.9);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 24px;
+      backdrop-filter: blur(10px);
+      padding: 28px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.4);
+      animation: panelIn .35s ease;
+    }
+    @keyframes panelIn { from { transform: translateY(10px); opacity: 0;} to { transform: translateY(0); opacity: 1;} }
 
-        .scroll-arrow {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .menu-card { background: rgba(250,253,255,.06); border: 1px solid rgba(250,253,255,.12); border-radius: 16px; padding: 16px; transition: transform .2s, box-shadow .2s; }
+    .menu-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.25); }
+    .menu-card h4 { margin-bottom: 6px; font-size: 1rem; color: var(--fg); letter-spacing: .5px; }
+    .menu-card p { margin: 0; font-size: .9rem; color: rgba(250,253,255,.75); }
+    .menu-card a { color: var(--fg); text-decoration: none; display: block; }
 
-        .scroll-text {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    .overlay-actions { display: flex; justify-content: flex-end; margin-top: 16px; gap: 10px; }
+    .btn { padding: .65rem 1rem; border-radius: 10px; border: 1px solid rgba(255,255,255,.2); background: transparent; color: var(--fg); cursor: pointer; }
+    .btn:hover { background: rgba(250,253,255,.08); }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
+    /* ====== Existing Main / Cards kept from your page (light tweaks) ====== */
+    main .search-filter { background: var(--fg); color: #101532; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(16, 21, 50, 0.15); margin-bottom: 3rem; }
+    .search-bar { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: center; flex-wrap: wrap; }
+    #searchInput { flex: 1; padding: 12px 20px; border: 2px solid var(--border); border-radius: 25px; font-size: 1rem; outline: none; transition: border-color .3s ease; min-width: 200px; background: var(--fg); }
+    #searchInput:focus { border-color: var(--accent); }
+    .filter-buttons { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .filter-btn { padding: 8px 16px; border: 2px solid var(--border); background: var(--fg); border-radius: 20px; cursor: pointer; transition: all .3s ease; font-size: .9rem; color: var(--bg); }
+    .filter-btn:hover, .filter-btn.active { background: var(--accent); color: var(--fg); border-color: var(--accent); }
 
-        .search-filter {
-            background: #fafdff;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(16, 21, 50, 0.15);
-            margin-bottom: 3rem;
-        }
+    .templates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+    .template-card { background: var(--fg); color: var(--bg); border-radius: 15px; box-shadow: 0 10px 30px rgba(16, 21, 50, 0.15); overflow: hidden; transition: transform .3s ease, box-shadow .3s ease; cursor: pointer; }
+    .template-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(16, 21, 50, 0.25); }
+    .template-preview { height: 200px; background: linear-gradient(45deg, #f0f4f7, #e8eff3); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: #5a6b7a; position: relative; overflow: hidden; }
+    .template-info { padding: 1.5rem; }
+    .template-title { font-size: 1.3rem; font-weight: 600; color: #101532; margin-bottom: .5rem; }
+    .template-description { color: #5a6b7a; font-size: .9rem; margin-bottom: 1rem; line-height: 1.4; }
+    .template-tags { display: flex; gap: .5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .tag { background: rgba(98, 136, 167, 0.15); color: #6288a7; padding: .3rem .8rem; border-radius: 15px; font-size: .8rem; font-weight: 500; }
 
-        .search-bar {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+    .template-actions { display: flex; gap: .5rem; }
+    .btn-link { padding: .7rem 1.2rem; border: none; border-radius: 8px; cursor: pointer; font-size: .9rem; font-weight: 500; text-decoration: none; text-align: center; transition: all .3s ease; display: inline-block; }
+    .btn-primary { background: var(--accent); color: var(--fg); }
+    .btn-primary:hover { background: var(--bg); transform: translateY(-2px); }
+    .btn-secondary { background: transparent; color: var(--bg); border: 1px solid var(--bg); }
+    .btn-secondary:hover { background: var(--bg); color: var(--fg); }
 
-        #searchInput {
-            flex: 1;
-            padding: 12px 20px;
-            border: 2px solid #e1e8ed;
-            border-radius: 25px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s ease;
-            min-width: 200px;
-            background: #fafdff;
-        }
+    footer { background: rgba(250, 253, 255, 0.95); backdrop-filter: blur(10px); padding: 3rem 0; margin-top: 3rem; text-align: center; }
+    .footer-content { color: #5a6b7a; line-height: 1.8; }
+    .footer-links { margin-top: 1rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+    .footer-links a { color: #101532; text-decoration: none; font-weight: 500; }
+    .footer-links a:hover { text-decoration: underline; }
+    .no-results, .loading { text-align: center; padding: 3rem; color: var(--fg); font-size: 1.1rem; }
 
-        #searchInput:focus {
-            border-color: #6288a7;
-        }
-
-        .filter-buttons {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 8px 16px;
-            border: 2px solid #e1e8ed;
-            background: #fafdff;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            color: #101532;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background: #6288a7;
-            color: #fafdff;
-            border-color: #6288a7;
-        }
-
-        .templates-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .template-card {
-            background: #fafdff;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(16, 21, 50, 0.15);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .template-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(16, 21, 50, 0.25);
-        }
-
-        .template-preview {
-            height: 200px;
-            background: linear-gradient(45deg, #f0f4f7, #e8eff3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: #5a6b7a;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .template-preview::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="20" fill="%23101532" opacity="0.1"/><rect y="25" width="80" height="8" fill="%23101532" opacity="0.2"/><rect y="38" width="60" height="8" fill="%23101532" opacity="0.2"/><rect y="51" width="90" height="8" fill="%23101532" opacity="0.2"/></svg>') center/cover;
-        }
-
-        .template-info {
-            padding: 1.5rem;
-        }
-
-        .template-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #101532;
-            margin-bottom: 0.5rem;
-        }
-
-        .template-description {
-            color: #5a6b7a;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-
-        .template-tags {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background: rgba(98, 136, 167, 0.15);
-            color: #6288a7;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .template-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .btn {
-            padding: 0.7rem 1.2rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-decoration: none;
-            text-align: center;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: #6288a7;
-            color: #fafdff;
-        }
-
-        .btn-primary:hover {
-            background: #101532;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: #101532;
-            border: 1px solid #101532;
-        }
-
-        .btn-secondary:hover {
-            background: #101532;
-            color: #fafdff;
-        }
-
-        footer {
-            background: rgba(250, 253, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 3rem 0;
-            margin-top: 3rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            color: #5a6b7a;
-            line-height: 1.8;
-        }
-
-        .footer-links {
-            margin-top: 1rem;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #101532;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 3rem;
-            color: #fafdff;
-            font-size: 1.1rem;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 3rem;
-            color: #fafdff;
-            font-size: 1.1rem;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            .stats {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .search-bar {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .templates-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .scroll-indicator {
-                display: none;
-            }
-
-            header {
-                padding: 2rem 0;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+      .stats { flex-direction: column; align-items: center; }
+      .search-bar { flex-direction: column; align-items: stretch; }
+      .templates-grid { grid-template-columns: 1fr; }
+      .footer-links { flex-direction: column; gap: 1rem; }
+      header.site-header { padding: 1.5rem 0 7.5rem 0; }
+      #stickyHeader nav.pill { top: 30px; width: 86vw; height: 82px; }
+      #stickyHeader.sticky nav.pill { width: 86px; height: 86px; }
+      .scroll-indicator { display: none; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo-container">
-                    <img src="NeuroSites-logo.jpg" alt="NeuroSites Logo" class="logo" onerror="this.style.display='none'">
-                </div>
-                <p class="subtitle">Open-source website templates for the neuroscience community</p>
-                
-                <div class="stats">
-                    <div class="stat">
-                        <div class="stat-number" id="templateCount">-</div>
-                        <div class="stat-label">Templates</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number" id="categoryCount">-</div>
-                        <div class="stat-label">Categories</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Free</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="scroll-indicator" onclick="scrollToTemplates()">
-                <div class="scroll-arrow">↓</div>
-                <div class="scroll-text">Scroll to explore</div>
-            </div>
+  <!-- Sticky / Floating pill + dropdown (new) -->
+  <div id="stickyHeader">
+    <nav class="pill" aria-label="Primary">
+      <a href="#templates">Templates</a>
+      <a href="#about">About</a>
+      <a href="#contribute">Contribute</a>
+      <a href="#contact">Contact</a>
+      <button id="openmenu" aria-label="Open menu" aria-haspopup="dialog" aria-controls="dropdownOverlay">
+        <span></span><span></span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Fullscreen dropdown panel (opens from the button) -->
+  <div class="dropdown-overlay" id="dropdownOverlay" role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="dropdown-panel">
+      <div class="menu-grid">
+        <a class="menu-card" href="#templates">
+          <h4>Browse Templates</h4>
+          <p>Explore lab sites, personal pages, and package wikis.</p>
+        </a>
+        <a class="menu-card" href="https://github.com/NeuroHackademy2025/NeuroSites" target="_blank" rel="noopener">
+          <h4>GitHub Repo</h4>
+          <p>Star, fork, or open an issue.</p>
+        </a>
+        <a class="menu-card" href="#contribute">
+          <h4>How to Contribute</h4>
+          <p>Guidelines for adding your own template.</p>
+        </a>
+        <a class="menu-card" href="#contact">
+          <h4>Contact</h4>
+          <p>Say hi or ask a question.</p>
+        </a>
+      </div>
+      <div class="overlay-actions">
+        <button class="btn" id="closeOverlay">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Your existing header/content -->
+  <header class="site-header" id="top">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo-container">
+          <img src="NeuroSites-logo.jpg" alt="NeuroSites Logo" class="logo" onerror="this.style.display='none'" />
         </div>
-    </header>
-
-    <main>
-        <div class="container">
-            <div class="search-filter">
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Search templates...">
-                    <div class="filter-buttons">
-                        <button class="filter-btn active" data-category="all">All</button>
-                        <button class="filter-btn" data-category="Lab Websites">Lab Websites</button>
-                        <button class="filter-btn" data-category="Personal Pages">Personal Pages</button>
-                        <button class="filter-btn" data-category="Package Wikis">Package Wikis</button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="templatesContainer">
-                <div class="loading">Loading templates...</div>
-            </div>
+        <p class="subtitle">Open-source website templates for the neuroscience community</p>
+        <div class="stats">
+          <div class="stat"><div class="stat-number" id="templateCount">-</div><div class="stat-label">Templates</div></div>
+          <div class="stat"><div class="stat-number" id="categoryCount">-</div><div class="stat-label">Categories</div></div>
+          <div class="stat"><div class="stat-number">100%</div><div class="stat-label">Free</div></div>
         </div>
-    </main>
+      </div>
+      <div class="scroll-indicator" onclick="document.querySelector('main').scrollIntoView({behavior:'smooth'})">
+        <div class="scroll-arrow">↓</div>
+        <div class="scroll-text">Scroll to explore</div>
+      </div>
+    </div>
+  </header>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <p><strong>NeuroSites</strong> - Making beautiful neuroscience websites accessible to everyone</p>
-                <p>All templates are licensed under CC BY 4.0. Use them freely, just give credit!</p>
-                <div class="footer-links">
-                    <a href="https://github.com/NeuroHackademy2025/NeuroSites">GitHub Repository</a>
-                    <a href="https://github.com/NeuroHackademy2025/NeuroSites/blob/main/CONTRIBUTING.md">Contribute</a>
-                    <a href="https://github.com/NeuroHackademy2025/NeuroSites/issues">Report Issues</a>
-                    <a href="https://github.com/NeuroHackademy2025/NeuroSites/blob/main/LICENSE">License</a>
-                </div>
-            </div>
+  <main id="templates">
+    <div class="container">
+      <div class="search-filter">
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Search templates..." />
+          <div class="filter-buttons">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="Event Promotions">Event Promotions</button>
+            <button class="filter-btn" data-category="Lab Websites">Lab Websites</button>
+            <button class="filter-btn" data-category="Personal Pages">Personal Pages</button>
+            <button class="filter-btn" data-category="Package Wikis">Package Wikis</button>
+          </div>
         </div>
-    </footer>
+      </div>
+      <div id="templatesContainer"><div class="loading">Loading templates...</div></div>
+    </div>
+  </main>
 
-    <script>
-        // Template data will be loaded dynamically from your repository structure
-        let templates = [];
+  <!-- Simple anchor targets for the new menu links -->
+  <section id="about" class="container" style="padding: 3rem 20px; max-width: 900px;">
+    <h2 style="margin-bottom: .5rem;">About</h2>
+    <p style="opacity:.85;">NeuroSites makes beautiful neuroscience websites accessible to everyone.</p>
+  </section>
+  <section id="contribute" class="container" style="padding: 3rem 20px; max-width: 900px;">
+    <h2 style="margin-bottom: .5rem;">Contribute</h2>
+    <p style="opacity:.85;">Check CONTRIBUTING.md in the GitHub repo to add a template.</p>
+  </section>
 
-        // State management
-        let currentFilter = 'all';
-        let searchTerm = '';
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <p><strong>NeuroSites</strong> - Making beautiful neuroscience websites accessible to everyone</p>
+        <p>All templates are licensed under CC BY 4.0. Use them freely, just give credit!</p>
+        <div class="footer-links">
+          <a href="https://github.com/NeuroHackademy2025/NeuroSites" target="_blank" rel="noopener">GitHub Repository</a>
+          <a href="https://github.com/NeuroHackademy2025/NeuroSites/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contribute</a>
+          <a href="https://github.com/NeuroHackademy2025/NeuroSites/issues" target="_blank" rel="noopener">Report Issues</a>
+          <a href="https://github.com/NeuroHackademy2025/NeuroSites/blob/main/LICENSE" target="_blank" rel="noopener">License</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-        // DOM elements
-        const searchInput = document.getElementById('searchInput');
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const templatesContainer = document.getElementById('templatesContainer');
-        const templateCount = document.getElementById('templateCount');
-        const categoryCount = document.getElementById('categoryCount');
+  <script>
+    // ====== Sticky logic & dropdown interactions ======
+    (function(){
+      const stickyHeader = document.getElementById('stickyHeader');
+      const pill = stickyHeader.querySelector('nav.pill');
+      const page = document.getElementById('page') || document.body; // fallback
+      const openBtn = document.getElementById('openmenu');
+      const overlay = document.getElementById('dropdownOverlay');
+      const closeOverlay = document.getElementById('closeOverlay');
 
-        // Initialize the page (simplified since we fetch templates async)
-        function init() {
-            setupEventListeners();
-        }
+      const onScroll = () => {
+        page.classList.remove('menuopen');
+        if (window.scrollY >= 100) stickyHeader.classList.add('sticky');
+        else stickyHeader.classList.remove('sticky');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
 
-        // Update statistics
-        function updateStats() {
-            templateCount.textContent = templates.length;
-            const categories = new Set(templates.map(t => t.category));
-            categoryCount.textContent = categories.size;
-        }
+      function openMenu(){ overlay.classList.add('active'); page.classList.add('menuopen'); }
+      function closeMenu(){ overlay.classList.remove('active'); page.classList.remove('menuopen'); }
 
-        // Setup event listeners
-        function setupEventListeners() {
-            searchInput.addEventListener('input', (e) => {
-                searchTerm = e.target.value.toLowerCase();
-                renderTemplates();
-            });
+      openBtn.addEventListener('click', openMenu);
+      closeOverlay.addEventListener('click', closeMenu);
+      overlay.addEventListener('click', (e)=>{ if (e.target === overlay) closeMenu(); });
 
-            filterButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    filterButtons.forEach(b => b.classList.remove('active'));
-                    e.target.classList.add('active');
-                    currentFilter = e.target.dataset.category;
-                    renderTemplates();
-                });
-            });
-        }
-
-        // Filter templates based on search and category
-        function filterTemplates() {
-            return templates.filter(template => {
-                const matchesSearch = !searchTerm || 
-                    template.title.toLowerCase().includes(searchTerm) ||
-                    template.description.toLowerCase().includes(searchTerm) ||
-                    template.tags.some(tag => tag.toLowerCase().includes(searchTerm));
-
-                const matchesCategory = currentFilter === 'all' || template.category === currentFilter;
-
-                return matchesSearch && matchesCategory;
-            });
-        }
-
-        // Render templates
-        function renderTemplates() {
-            const filteredTemplates = filterTemplates();
-
-            if (filteredTemplates.length === 0) {
-                templatesContainer.innerHTML = `
-                    <div class="no-results">
-                        <p>No templates found matching your criteria.</p>
-                        <p>Try adjusting your search or filter options.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            const templatesHTML = filteredTemplates.map(template => `
-                <div class="template-card" data-id="${template.id}">
-                    <div class="template-preview" style="${template.preview ? `background-image: url('${template.preview}'); background-size: cover; background-position: center;` : ''}">
-                        ${!template.preview ? '<span>Preview</span>' : ''}
-                    </div>
-                    <div class="template-info">
-                        <h3 class="template-title">${template.title}</h3>
-                        <p class="template-description">${template.description}</p>
-                        <div class="template-tags">
-                            ${template.tags ? template.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : `<span class="tag">${template.category}</span>`}
-                        </div>
-                        <div class="template-actions">
-                            <a href="${template.demoUrl}" class="btn btn-primary" target="_blank">View Template</a>
-                            <a href="${template.downloadUrl}" class="btn btn-secondary" target="_blank">View Code</a>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-
-            templatesContainer.innerHTML = `<div class="templates-grid">${templatesHTML}</div>`;
-        }
-
-        // Fetch templates dynamically from your repository structure
-        async function fetchTemplatesFromRepository() {
-            try {
-                templatesContainer.innerHTML = '<div class="loading">Loading templates...</div>';
-                
-                console.log('Fetching templates from repository...');
-                
-                // First, get the main templates directory
-                const response = await fetch('https://api.github.com/repos/NeuroHackademy2025/NeuroSites/contents/templates');
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const templateCategories = await response.json();
-                console.log('Template categories found:', templateCategories);
-                
-                // Filter for directories (template categories)
-                const categoryDirs = templateCategories.filter(item => 
-                    item.type === 'dir' && !item.name.startsWith('.')
-                );
-                
-                console.log('Category directories:', categoryDirs.map(d => d.name));
-                
-                templates = [];
-                
-                // Process each category
-                for (const categoryDir of categoryDirs) {
-                    try {
-                        console.log(`Processing category: ${categoryDir.name}`);
-                        
-                        // Get category contents
-                        const categoryResponse = await fetch(`https://api.github.com/repos/NeuroHackademy2025/NeuroSites/contents/templates/${categoryDir.name}`);
-                        const categoryContents = await categoryResponse.json();
-                        
-                        console.log(`Contents of ${categoryDir.name}:`, categoryContents);
-                        
-                        // Get template directories in this category
-                        const templateDirs = categoryContents.filter(item => 
-                            item.type === 'dir' && !item.name.startsWith('.')
-                        );
-                        
-                        console.log(`Template dirs in ${categoryDir.name}:`, templateDirs.map(d => d.name));
-                        
-                        // Process each template
-                        for (const templateDir of templateDirs) {
-                            try {
-                                console.log(`Processing template: ${templateDir.name}`);
-                                
-                                // Create basic template info
-                                let templateInfo = {
-                                    id: templateDir.name,
-                                    title: templateDir.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
-                                    description: `A ${categoryDir.name.replace('-', ' ')} template for neuroscience websites.`,
-                                    category: categoryDir.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
-                                    tags: [],
-                                    preview: null,
-                                    demoUrl: `templates/${categoryDir.name}/${templateDir.name}/`,
-                                    downloadUrl: `https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/${categoryDir.name}/${templateDir.name}`
-                                };
-                                
-                                // Try to get template contents for manifest and preview
-                                try {
-                                    const templateResponse = await fetch(`https://api.github.com/repos/NeuroHackademy2025/NeuroSites/contents/templates/${categoryDir.name}/${templateDir.name}`);
-                                    const templateContents = await templateResponse.json();
-                                    
-                                    // Look for manifest.json
-                                    const manifestFile = templateContents.find(file => file.name === 'manifest.json');
-                                    if (manifestFile) {
-                                        const manifestResponse = await fetch(manifestFile.download_url);
-                                        const manifestData = await manifestResponse.json();
-                                        templateInfo = { ...templateInfo, ...manifestData };
-                                    }
-                                    
-                                    // Ensure tags don't include duplicates of the category
-                                    if (templateInfo.tags && Array.isArray(templateInfo.tags)) {
-                                        templateInfo.tags = [...new Set(templateInfo.tags.filter(tag => tag !== templateInfo.category))];
-                                        // Add category as first tag if tags array is empty
-                                        if (templateInfo.tags.length === 0) {
-                                            templateInfo.tags = [templateInfo.category];
-                                        }
-                                    }
-                                    
-                                    // Check for preview image
-                                    const previewFile = templateContents.find(file => 
-                                        file.name === 'preview.png' || file.name === 'preview.jpg'
-                                    );
-                                    
-                                    if (previewFile) {
-                                        templateInfo.preview = previewFile.download_url;
-                                    }
-                                } catch (templateError) {
-                                    console.warn(`Could not fetch details for template ${templateDir.name}:`, templateError);
-                                }
-                                
-                                templates.push(templateInfo);
-                                console.log(`Added template:`, templateInfo);
-                                
-                            } catch (error) {
-                                console.warn(`Error processing template ${templateDir.name}:`, error);
-                            }
-                        }
-                    } catch (error) {
-                        console.warn(`Error processing category ${categoryDir.name}:`, error);
-                    }
-                }
-                
-                console.log('Final templates array:', templates);
-                
-                // If we got templates, update the UI
-                if (templates.length > 0) {
-                    updateStats();
-                    renderTemplates();
-                    updateFilterButtons();
-                } else {
-                    // Only show error if we truly have no templates
-                    templatesContainer.innerHTML = `
-                        <div class="no-results">
-                            <p>No templates found in the repository.</p>
-                            <p>Check the browser console for debugging information.</p>
-                        </div>
-                    `;
-                }
-                
-            } catch (error) {
-                console.error('Error fetching templates:', error);
-                templatesContainer.innerHTML = `
-                    <div class="no-results">
-                        <p>Error loading templates from repository.</p>
-                        <p>Error: ${error.message}</p>
-                        <p>Check the browser console for more details.</p>
-                    </div>
-                `;
-            }
-        }
-        
-        // Update filter buttons based on available categories
-        function updateFilterButtons() {
-            const categories = [...new Set(templates.map(t => t.category))];
-            const filterContainer = document.querySelector('.filter-buttons');
-            
-            // Keep the "All" button and add category-specific buttons
-            const allButton = filterContainer.querySelector('[data-category="all"]');
-            filterContainer.innerHTML = '';
-            filterContainer.appendChild(allButton);
-            
-            categories.forEach(category => {
-                const button = document.createElement('button');
-                button.className = 'filter-btn';
-                button.dataset.category = category;
-                button.textContent = category.charAt(0).toUpperCase() + category.slice(1);
-                button.addEventListener('click', (e) => {
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    e.target.classList.add('active');
-                    currentFilter = e.target.dataset.category;
-                    renderTemplates();
-                });
-                filterContainer.appendChild(button);
-            });
-        }
-
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            setupEventListeners();
-            fetchTemplatesFromRepository();
+      // Smooth-scroll for nav links
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href');
+          if (id.length > 1) {
+            e.preventDefault();
+            document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+            closeMenu();
+          }
         });
+      });
+    })();
 
-        // Scroll to templates function
-        function scrollToTemplates() {
-            const main = document.querySelector('main');
-            main.scrollIntoView({ behavior: 'smooth' });
+    // ====== Your existing template loader (adapted) ======
+    let templates = [];
+    let currentFilter = 'all';
+    let searchTerm = '';
+
+    const searchInput = document.getElementById('searchInput');
+    const templatesContainer = document.getElementById('templatesContainer');
+    const templateCount = document.getElementById('templateCount');
+    const categoryCount = document.getElementById('categoryCount');
+
+    function updateStats(){
+      templateCount.textContent = templates.length;
+      const categories = new Set(templates.map(t => t.category));
+      categoryCount.textContent = categories.size;
+    }
+
+    function filterTemplates(){
+      return templates.filter(t => {
+        const matchesSearch = !searchTerm || t.title.toLowerCase().includes(searchTerm) || t.description.toLowerCase().includes(searchTerm) || (t.tags||[]).some(tag => tag.toLowerCase().includes(searchTerm));
+        const matchesCategory = currentFilter === 'all' || t.category === currentFilter;
+        return matchesSearch && matchesCategory;
+      });
+    }
+
+    function renderTemplates(){
+      const filtered = filterTemplates();
+      if (!filtered.length){
+        templatesContainer.innerHTML = `<div class="no-results"><p>No templates found matching your criteria.</p><p>Try adjusting your search or filter options.</p></div>`;
+        return;
+      }
+      const html = filtered.map(t => `
+        <div class="template-card" data-id="${t.id}">
+          <div class="template-preview" style="${t.preview ? `background-image:url('${t.preview}');background-size:cover;background-position:center;` : ''}">${!t.preview ? '<span>Preview</span>' : ''}</div>
+          <div class="template-info">
+            <h3 class="template-title">${t.title}</h3>
+            <p class="template-description">${t.description}</p>
+            <div class="template-tags">${(t.tags && t.tags.length ? [...new Set(t.tags)].map(tag => `<span class="tag">${tag}</span>`).join('') : `<span class="tag">${t.category}</span>`)}</div>
+            <div class="template-actions">
+              <a class="btn-link btn-primary" href="${t.demoUrl}" target="_blank" rel="noopener">View Template</a>
+              <a class="btn-link btn-secondary" href="${t.downloadUrl}" target="_blank" rel="noopener">View Code</a>
+            </div>
+          </div>
+        </div>`).join('');
+      templatesContainer.innerHTML = `<div class="templates-grid">${html}</div>`;
+    }
+
+    function setupFilters(){
+      const filterContainer = document.querySelector('.filter-buttons');
+      filterContainer.addEventListener('click', (e)=>{
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        filterContainer.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.category;
+        renderTemplates();
+      });
+
+      searchInput.addEventListener('input', (e)=>{ searchTerm = e.target.value.toLowerCase(); renderTemplates(); });
+    }
+
+    async function fetchTemplatesFromRepository(){
+      try {
+        templatesContainer.innerHTML = '<div class="loading">Loading templates...</div>';
+        const res = await fetch('https://api.github.com/repos/NeuroHackademy2025/NeuroSites/contents/templates');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const cats = (await res.json()).filter(x => x.type === 'dir' && !x.name.startsWith('.'));
+        templates = [];
+        for (const cat of cats){
+          const r2 = await fetch(`https://api.github.com/repos/NeuroHackademy2025/NeuroSites/contents/templates/${cat.name}`);
+          const contents = await r2.json();
+          const dirs = contents.filter(x => x.type === 'dir' && !x.name.startsWith('.'));
+          for (const d of dirs){
+            let t = {
+              id: d.name,
+              title: d.name.replace(/-/g,' ').replace(/\b\w/g, c => c.toUpperCase()),
+              description: `A ${cat.name.replace('-', ' ')} template for neuroscience websites.`,
+              category: cat.name.replace(/-/g,' ').replace(/\b\w/g, c => c.toUpperCase()),
+              tags: [], preview: null,
+              demoUrl: `templates/${cat.name}/${d.name}/`,
+              downloadUrl: `https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/${cat.name}/${d.name}`
+            };
+            try {
+              const r3 = await fetch(`https://api.github.com/repos/NeuroHackademy2025/NeuroSites/contents/templates/${cat.name}/${d.name}`);
+              const files = await r3.json();
+              const manifest = files.find(f => f.name === 'manifest.json');
+              if (manifest){ Object.assign(t, await (await fetch(manifest.download_url)).json()); }
+              const preview = files.find(f => f.name === 'preview.png' || f.name === 'preview.jpg');
+              if (preview) t.preview = preview.download_url;
+            } catch {}
+            if (Array.isArray(t.tags)){
+              t.tags = [...new Set(t.tags.filter(tag => tag !== t.category))];
+              if (!t.tags.length) t.tags = [t.category];
+            }
+            templates.push(t);
+          }
         }
-    </script>
+        updateStats();
+        renderTemplates();
+      } catch (err){
+        templatesContainer.innerHTML = `<div class="no-results"><p>Error loading templates from repository.</p><p>Error: ${err.message}</p></div>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => { setupFilters(); fetchTemplatesFromRepository(); });
+  </script>
 </body>
 </html>
