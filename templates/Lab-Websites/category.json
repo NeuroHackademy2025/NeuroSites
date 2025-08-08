@@ -1,0 +1,36 @@
+{
+  "name": "Lab Websites",
+  "description": "Websites for research laboratories and groups",
+  "icon": "🧪",
+  "commonFields": {
+    "lab_name": {
+      "label": "Lab Name",
+      "type": "text",
+      "required": true,
+      "placeholder": "Cognitive Neuroscience Lab"
+    },
+    "pi_name": {
+      "label": "Principal Investigator",
+      "type": "text",
+      "required": true,
+      "placeholder": "Dr. Jane Smith"
+    },
+    "institution": {
+      "label": "Institution",
+      "type": "text",
+      "required": true
+    },
+    "lab_description": {
+      "label": "Lab Description",
+      "type": "textarea",
+      "required": true,
+      "maxLength": 1000
+    },
+    "research_areas": {
+      "label": "Research Areas",
+      "type": "tags",
+      "placeholder": "fMRI, EEG, cognitive control"
+    }
+  },
+  "themes": ["academic-lab", "modern-lab", "minimal-lab"]
+}
