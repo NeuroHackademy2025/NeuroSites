@@ -412,9 +412,9 @@
                     <input type="text" id="searchInput" placeholder="Search templates...">
                     <div class="filter-buttons">
                         <button class="filter-btn active" data-category="all">All</button>
-                        <button class="filter-btn" data-category="lab">Lab Websites</button>
-                        <button class="filter-btn" data-category="personal">Personal Pages</button>
-                        <button class="filter-btn" data-category="package">Package Wikis</button>
+                        <button class="filter-btn" data-category="Lab Websites">Lab Websites</button>
+                        <button class="filter-btn" data-category="Personal Pages">Personal Pages</button>
+                        <button class="filter-btn" data-category="Package Wikis">Package Wikis</button>
                     </div>
                 </div>
             </div>
@@ -588,11 +588,11 @@
                                     id: templateDir.name,
                                     title: templateDir.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
                                     description: `A ${categoryDir.name.replace('-', ' ')} template for neuroscience websites.`,
-                                    category: categoryDir.name.replace('-', '').replace(/([A-Z])/g, ' $1').trim(),
+                                    category: categoryDir.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
                                     tags: [],
                                     preview: null,
                                     demoUrl: `templates/${categoryDir.name}/${templateDir.name}/`,
-                                    downloadUrl: `https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/${categoryDir.name}/${templateDir.name}`
+                                    downloadUrl: `https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/${categoryDir.name}/${templateDir.name}`
                                 };
                                 
                                 // Try to get template contents for manifest and preview
