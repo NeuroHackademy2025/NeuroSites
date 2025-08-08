@@ -1,0 +1,37 @@
+{
+  "name": "Python Neuroimaging Package",
+  "short_name": "NeuroPkg",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#004d7a",
+  "icons": [
+    {
+      "src": "images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "sections": [
+    {
+      "name": "Home",
+      "url": "index.html"
+    },
+    {
+      "name": "Installation",
+      "url": "install.html"
+    },
+    {
+      "name": "Usage",
+      "url": "usage.html"
+    },
+    {
+      "name": "Features",
+      "url": "features.html"
+    },
+    {
+      "name": "Documentation",
+      "url": "docs.html"
+    }
+  ]
+}
