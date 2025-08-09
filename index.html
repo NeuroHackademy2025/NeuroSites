@@ -55,7 +55,7 @@
     .scroll-indicator { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; color: rgba(250, 253, 255, 0.7); cursor: pointer; transition: all .3s ease; animation: bounce 2s infinite; z-index: 2; }
     .scroll-indicator:hover { color: var(--accent); }
     .scroll-arrow { font-size: 1.5rem; margin-bottom: .5rem; }
-    .scroll-text { font-size: .8rem; text-transform: uppercase; letter-spacing: 1px; }
+    .scroll-text { font-size: .85rem; text-transform: uppercase; letter-spacing: 1px; }
     @keyframes bounce { 0%,20%,50%,80%,100%{ transform: translateX(-50%) translateY(0);} 40%{ transform: translateX(-50%) translateY(-10px);} 60%{ transform: translateX(-50%) translateY(-5px);} }
 
     /* ====== Sticky Floating Pill Nav with Dropdown Button ====== */
@@ -80,7 +80,11 @@
       padding: 10px 16px; line-height: 1; font-size: 17px; letter-spacing: 2px; text-transform: lowercase;
       font-family: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
       font-weight: 900;
-      opacity: 1; transform: scale(1); transition: .4s opacity, .4s transform;
+      opacity: 1; transform: scale(1); transition: .4s opacity, .4s transform, .3s font-size;
+    }
+
+    #stickyHeader nav.pill a:hover {
+      font-size: 25px;
     }
 
     /* Special styling for Templates link */
@@ -228,6 +232,19 @@
     .search-bar { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: center; flex-wrap: wrap; }
     #searchInput { flex: 1; padding: 12px 20px; border: 2px solid var(--border); border-radius: 25px; font-size: 1rem; outline: none; transition: border-color .3s ease; min-width: 200px; background: var(--fg); }
     #searchInput:focus { border-color: var(--accent); }
+    
+    /* Dropdown Filters */
+    .filter-dropdowns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .dropdown-container { position: relative; min-width: 150px; }
+    .dropdown-select { 
+      width: 100%; padding: 10px 40px 10px 15px; border: 2px solid var(--border); 
+      border-radius: 20px; background: var(--fg); color: var(--bg); font-size: .9rem; 
+      cursor: pointer; outline: none; appearance: none; transition: border-color .3s ease;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23101532' viewBox='0 0 16 16'%3e%3cpath d='M8 11L3 6h10l-5 5z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat; background-position: right 12px center; background-size: 12px;
+    }
+    .dropdown-select:hover, .dropdown-select:focus { border-color: var(--accent); }
+    
     .filter-buttons { display: flex; gap: .5rem; flex-wrap: wrap; }
     .filter-btn { padding: 8px 16px; border: 2px solid var(--border); background: var(--fg); border-radius: 20px; cursor: pointer; transition: all .3s ease; font-size: .9rem; color: var(--bg); }
     .filter-btn:hover, .filter-btn.active { background: var(--accent); color: var(--fg); border-color: var(--accent); }
@@ -335,13 +352,39 @@
       <div class="search-filter">
         <div class="search-bar">
           <input type="text" id="searchInput" placeholder="Search templates..." />
-          <div class="filter-buttons">
-            <button class="filter-btn active" data-category="all">All</button>
-            <button class="filter-btn" data-category="Event Promotions">Event Promotions</button>
-            <button class="filter-btn" data-category="Lab Websites">Lab Websites</button>
-            <button class="filter-btn" data-category="Personal Pages">Personal Pages</button>
-            <button class="filter-btn" data-category="Package Wikis">Package Wikis</button>
+        </div>
+        <div class="filter-dropdowns">
+          <div class="dropdown-container">
+            <select class="dropdown-select" id="tagFilter">
+              <option value="all">All Tags</option>
+            </select>
           </div>
+          <div class="dropdown-container">
+            <select class="dropdown-select" id="styleFilter">
+              <option value="all">All Styles</option>
+              <option value="modern">Modern</option>
+              <option value="minimal">Minimal</option>
+              <option value="clean">Clean</option>
+              <option value="professional">Professional</option>
+              <option value="academic">Academic</option>
+            </select>
+          </div>
+          <div class="dropdown-container">
+            <select class="dropdown-select" id="themeFilter">
+              <option value="all">All Themes</option>
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+              <option value="blue">Blue</option>
+              <option value="neutral">Neutral</option>
+            </select>
+          </div>
+        </div>
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-category="all">All</button>
+          <button class="filter-btn" data-category="Event Promotions">Event Promotions</button>
+          <button class="filter-btn" data-category="Lab Websites">Lab Websites</button>
+          <button class="filter-btn" data-category="Personal Pages">Personal Pages</button>
+          <button class="filter-btn" data-category="Package Wikis">Package Wikis</button>
         </div>
       </div>
       <div id="templatesContainer"><div class="loading">Loading templates...</div></div>
@@ -414,9 +457,15 @@
     // ====== Template loader (fixed version from second script) ======
     let templates = [];
     let currentFilter = 'all';
+    let currentTagFilter = 'all';
+    let currentStyleFilter = 'all';
+    let currentThemeFilter = 'all';
     let searchTerm = '';
 
     const searchInput = document.getElementById('searchInput');
+    const tagFilter = document.getElementById('tagFilter');
+    const styleFilter = document.getElementById('styleFilter');
+    const themeFilter = document.getElementById('themeFilter');
     const templatesContainer = document.getElementById('templatesContainer');
     const templateCount = document.getElementById('templateCount');
     const categoryCount = document.getElementById('categoryCount');
@@ -433,8 +482,21 @@
           t.title.toLowerCase().includes(searchTerm) || 
           t.description.toLowerCase().includes(searchTerm) || 
           (t.tags && t.tags.some && t.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
+        
         const matchesCategory = currentFilter === 'all' || t.category === currentFilter;
-        return matchesSearch && matchesCategory;
+        
+        const matchesTag = currentTagFilter === 'all' || 
+          (t.tags && t.tags.some && t.tags.some(tag => tag.toLowerCase().includes(currentTagFilter.toLowerCase())));
+        
+        const matchesStyle = currentStyleFilter === 'all' || 
+          (t.style && t.style.toLowerCase() === currentStyleFilter.toLowerCase()) ||
+          (t.tags && t.tags.some && t.tags.some(tag => tag.toLowerCase().includes(currentStyleFilter.toLowerCase())));
+        
+        const matchesTheme = currentThemeFilter === 'all' || 
+          (t.theme && t.theme.toLowerCase() === currentThemeFilter.toLowerCase()) ||
+          (t.tags && t.tags.some && t.tags.some(tag => tag.toLowerCase().includes(currentThemeFilter.toLowerCase())));
+        
+        return matchesSearch && matchesCategory && matchesTag && matchesStyle && matchesTheme;
       });
     }
 
@@ -471,7 +533,78 @@
         renderTemplates();
       });
 
-      searchInput.addEventListener('input', (e)=>{ searchTerm = e.target.value.toLowerCase(); renderTemplates(); });
+      searchInput.addEventListener('input', (e)=>{ 
+        searchTerm = e.target.value.toLowerCase(); 
+        renderTemplates(); 
+      });
+
+      // Add dropdown filter event listeners
+      tagFilter.addEventListener('change', (e) => {
+        currentTagFilter = e.target.value;
+        renderTemplates();
+      });
+
+      styleFilter.addEventListener('change', (e) => {
+        currentStyleFilter = e.target.value;
+        renderTemplates();
+      });
+
+      themeFilter.addEventListener('change', (e) => {
+        currentThemeFilter = e.target.value;
+        renderTemplates();
+      });
+    }
+
+    function updateTagDropdown() {
+      // Populate tag dropdown with available tags from templates
+      const allTags = new Set();
+      templates.forEach(t => {
+        if (t.tags && Array.isArray(t.tags)) {
+          t.tags.forEach(tag => allTags.add(tag));
+        }
+      });
+      
+      // Clear existing options except "All Tags"
+      tagFilter.innerHTML = '<option value="all">All Tags</option>';
+      
+      // Add tag options
+      [...allTags].sort().forEach(tag => {
+        const option = document.createElement('option');
+        option.value = tag.toLowerCase();
+        option.textContent = tag;
+        tagFilter.appendChild(option);
+      });
+    }
+
+    // Load filter configuration from JSON
+    async function loadFilterConfig() {
+      try {
+        const response = await fetch('./filter-config.json');
+        const config = await response.json();
+        
+        // Populate style dropdown
+        styleFilter.innerHTML = '<option value="all">All Styles</option>';
+        config.styles.forEach(style => {
+          const option = document.createElement('option');
+          option.value = style.toLowerCase();
+          option.textContent = style;
+          styleFilter.appendChild(option);
+        });
+        
+        // Populate theme dropdown
+        themeFilter.innerHTML = '<option value="all">All Themes</option>';
+        config.themes.forEach(theme => {
+          const option = document.createElement('option');
+          option.value = theme.toLowerCase();
+          option.textContent = theme;
+          themeFilter.appendChild(option);
+        });
+        
+        console.log('Filter configuration loaded successfully');
+      } catch (error) {
+        console.warn('Could not load filter configuration, using defaults:', error);
+        // Keep the existing hardcoded options as fallback
+      }
     }
 
     function updateFilterButtons() {
@@ -507,7 +640,9 @@
           title: 'Modern Lab Website',
           description: 'A clean and modern lab website template with sections for research, publications, and team members.',
           category: 'Lab Websites',
-          tags: ['Lab Websites', 'Research', 'Publications', 'Team'],
+          tags: ['Research', 'Publications', 'Team'],
+          style: 'Modern',
+          theme: 'Blue',
           preview: null,
           demoUrl: '#',
           downloadUrl: '#'
@@ -517,7 +652,9 @@
           title: 'Academic Portfolio',
           description: 'A professional personal page template perfect for academic researchers and professionals.',
           category: 'Personal Pages',
-          tags: ['Personal Pages', 'Professional', 'Academic'],
+          tags: ['Professional', 'Academic', 'Portfolio'],
+          style: 'Modern',
+          theme: 'Light',
           preview: null,
           demoUrl: '#',
           downloadUrl: '#'
@@ -527,7 +664,9 @@
           title: 'Conference Website',
           description: 'A comprehensive event promotion template perfect for conferences, workshops, and symposiums.',
           category: 'Event Promotions',
-          tags: ['Event Promotions', 'Conference', 'Workshop'],
+          tags: ['Conference', 'Workshop', 'Event'],
+          style: 'Professional',
+          theme: 'Dark',
           preview: null,
           demoUrl: '#',
           downloadUrl: '#'
@@ -537,7 +676,9 @@
           title: 'Python Package Docs',
           description: 'A clean documentation template for Python packages with comprehensive sections.',
           category: 'Package Wikis',
-          tags: ['Package Wikis', 'Python', 'Documentation'],
+          tags: ['Python', 'Documentation'],
+          style: 'Clean',
+          theme: 'Neutral',
           preview: null,
           demoUrl: '#',
           downloadUrl: '#'
@@ -547,7 +688,9 @@
           title: 'Minimal Lab Site',
           description: 'A minimal and clean lab website template focusing on content over design.',
           category: 'Lab Websites',
-          tags: ['Lab Websites', 'Minimal', 'Clean'],
+          tags: ['Minimal', 'Simple'],
+          style: 'Minimal',
+          theme: 'Light',
           preview: null,
           demoUrl: '#',
           downloadUrl: '#'
@@ -557,7 +700,9 @@
           title: 'Researcher Profile',
           description: 'A comprehensive personal page template for researchers with CV and publications.',
           category: 'Personal Pages',
-          tags: ['Personal Pages', 'CV', 'Publications'],
+          tags: ['CV', 'Publications', 'Academic'],
+          style: 'Professional',
+          theme: 'Blue',
           preview: null,
           demoUrl: '#',
           downloadUrl: '#'
@@ -566,6 +711,7 @@
       
       console.log('Loaded development templates:', templates);
       updateStats();
+      updateTagDropdown();
       renderTemplates();
       updateFilterButtons();
     }
@@ -698,7 +844,11 @@
       */
     }
 
-    document.addEventListener('DOMContentLoaded', () => { setupFilters(); fetchTemplatesFromRepository(); });
+    document.addEventListener('DOMContentLoaded', () => { 
+      setupFilters(); 
+      loadFilterConfig(); // Load dropdown options from JSON
+      fetchTemplatesFromRepository(); 
+    });
   </script>
 </body>
 </html>
