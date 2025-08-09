@@ -66,7 +66,7 @@
     #stickyHeader nav.pill {
       position: fixed;
       left: 0; right: 0; top: 50px;
-      width: 590px; height: 80px; margin: 0 auto;
+      width: 700px; height: 80px; margin: 0 auto;
       display: flex; justify-content: center; align-items: center; gap: 25px;
       padding: 0 20px;
       background-color: rgba(255,255,255,.06);
@@ -228,11 +228,11 @@
     .btn:hover { background: rgba(250,253,255,.08); }
 
     /* ====== Search Template Cards ====== */
-    main { background: var(--fg); color: #101532; padding: 0; border-radius: 15px; box-shadow: 0 10px 30px rgba(16, 21, 50, 0.15); margin-bottom: 3rem; overflow: hidden; max-width: 1250px; margin-left: auto; margin-right: auto; }
+    main {background: #E3EBF2; padding: 0; border-radius: 15px; box-shadow: 0 10px 30px rgba(16, 21, 50, 0.15); margin-bottom: 3rem; overflow: hidden; max-width: 1250px; margin-left: auto; margin-right: auto; }
     main .search-filter { background: transparent; color: inherit; padding: 0; border-radius: 0; box-shadow: none; margin-bottom: 0; overflow: visible; }
     
     /* Category Tabs */
-    .filter-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); background: rgba(250, 253, 255, 0.95); }
+    .filter-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); background: #E3EBF2; }
     .filter-tab { 
       padding: 1rem 1rem; border: none; background: transparent; color: #5a6b7a; 
       cursor: pointer; transition: all .3s ease; font-size: 1rem; font-weight: 500;
@@ -311,9 +311,10 @@
   <div id="stickyHeader">
     <nav class="pill" aria-label="Primary">
       <a href="#templates">Templates</a>
-      <a href="#learn">Learn</a>
-      <a href="#contribute">Contribute</a>
-      <a href="#contact">Contact</a>
+      <a href="guide.html">Guide</a>
+      <a href="support.html">Support</a>
+      <a href="contribute.html">Contribute</a>
+      <a href="about.html">About</a>
       <button id="openmenu" aria-label="Open menu" aria-haspopup="dialog" aria-controls="dropdownOverlay">
         <span></span><span></span>
       </button>
@@ -328,17 +329,25 @@
           <h4>Browse Templates</h4>
           <p>Explore lab sites, personal pages, and package wikis.</p>
         </a>
+        <a class="menu-card" href="guide.html">
+          <h4>Guide</h4>
+          <p>Learn how to find, customize, and deploy templates.</p>
+        </a>
+        <a class="menu-card" href="support.html">
+          <h4>Support</h4>
+          <p>Get help or report problems.</p>
+        </a>
+        <a class="menu-card" href="contribute.html">
+          <h4>Contribute Templates</h4>
+          <p>Share your designs with the community.</p>
+        </a>
+        <a class="menu-card" href="about.html">
+          <h4>About</h4>
+          <p>Learn about our mission and contributors.</p>
+        </a>
         <a class="menu-card" href="https://github.com/NeuroHackademy2025/NeuroSites" target="_blank" rel="noopener">
-          <h4>GitHub Repo</h4>
-          <p>Star, fork, or open an issue.</p>
-        </a>
-        <a class="menu-card" href="#contribute">
-          <h4>How to Contribute</h4>
-          <p>Guidelines for adding your own template.</p>
-        </a>
-        <a class="menu-card" href="#contact">
-          <h4>Contact</h4>
-          <p>Say hi or ask a question.</p>
+          <h4>GitHub Repository</h4>
+          <p>View source code and contribute.</p>
         </a>
       </div>
       <div class="overlay-actions">
@@ -363,7 +372,7 @@
       </div>
       <div class="scroll-indicator" onclick="document.querySelector('main').scrollIntoView({behavior:'smooth'})">
         <div class="scroll-arrow">↓</div>
-        <div class="scroll-text">Scroll to explore</div>
+        <div class="scroll-text">Browse Templates</div>
       </div>
     </div>
   </header>
@@ -416,25 +425,17 @@
     </div>
   </main>
 
-  <!-- Simple anchor targets for the new menu links -->
-  <section id="learn" class="container" style="padding: 3rem 20px; max-width: 900px;">
-    <h2 style="margin-bottom: .5rem;">Learn</h2>
-    <p style="opacity:.85;">NeuroSites makes beautiful neuroscience websites accessible to everyone.</p>
-  </section>
-  <section id="contribute" class="container" style="padding: 3rem 20px; max-width: 900px;">
-    <h2 style="margin-bottom: .5rem;">Contribute</h2>
-    <p style="opacity:.85;">Check CONTRIBUTING.md in the GitHub repo to add a template.</p>
-  </section>
-
-  <footer id="contact">
+  <footer>
     <div class="container">
       <div class="footer-content">
         <p><strong>NeuroSites</strong> - Making beautiful neuroscience websites accessible to everyone</p>
         <p>All templates are licensed under CC BY 4.0. Use them freely, just give credit!</p>
         <div class="footer-links">
           <a href="https://github.com/NeuroHackademy2025/NeuroSites" target="_blank" rel="noopener">GitHub Repository</a>
-          <a href="https://github.com/NeuroHackademy2025/NeuroSites/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contribute</a>
-          <a href="https://github.com/NeuroHackademy2025/NeuroSites/issues" target="_blank" rel="noopener">Report Issues</a>
+          <a href="guide.html">Guide</a>
+          <a href="support.html">Support</a>
+          <a href="contribute.html">Contribute Templates</a>
+          <a href="about.html">About Us</a>
           <a href="https://github.com/NeuroHackademy2025/NeuroSites/blob/main/LICENSE" target="_blank" rel="noopener">License</a>
         </div>
       </div>
