@@ -47,10 +47,49 @@
     .logo { max-height: 400px; width: auto; margin: 0 auto; display: block; }
     .subtitle { font-size: 1.2rem; color: var(--muted); margin-bottom: 3rem; }
 
-    .stats { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2.5rem; }
-    .stat { text-align: center; padding: 1rem; background: var(--card); border-radius: 10px; min-width: 120px; }
-    .stat-number { font-size: 2rem; font-weight: bold; color: var(--fg); }
-    .stat-label { font-size: 1rem; color: rgba(250, 253, 255, 0.7); }
+    /* --- Sleek feature pills --- */
+    .stats { 
+    display: flex; 
+    justify-content: center; 
+    gap: 1rem; 
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    }
+    .stat {
+    --h: 100px;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    align-items: center;
+    gap: .85rem;
+    height: var(--h);
+    min-width: 340px;
+    padding: 1rem 1.2rem;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, rgba(250,253,255,.10), rgba(250,253,255,.06));
+    border: 1px solid rgba(250,253,255,.16);
+    box-shadow: 0 10px 26px rgba(0,0,0,.18);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .stat:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px rgba(0,0,0,.24);
+    border-color: rgba(250,253,255,.24);
+    }
+    .stat-icon {
+    width: 60px; height: 60px;
+    border-radius: 9999px;
+    display: grid; place-items: center;
+    background: radial-gradient(120% 120% at 30% 20%, rgba(98,136,167,.35), rgba(98,136,167,.12));
+    border: 1px solid rgba(98,136,167,.45);
+    }
+    .stat-title { font-size: 1.02rem; font-weight: 800; margin: 0; line-height: 1.1; }
+    .stat-description { margin: .15rem 0 0 0; font-size: .9rem; color: rgba(250,253,255,.78); }
+
+    /* Tighter on small screens */
+    @media (max-width: 820px){
+    .stat { min-width: 260px; --h: 56px; }
+    .stat-description { font-size: .88rem; }
+    }
 
     .scroll-indicator { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; color: rgba(250, 253, 255, 0.7); cursor: pointer; transition: all .3s ease; animation: bounce 2s infinite; z-index: 2; }
     .scroll-indicator:hover { color: var(--accent); }
@@ -295,7 +334,8 @@
     .no-results, .loading { text-align: center; padding: 3rem; color: var(--fg); font-size: 1.1rem; }
 
     @media (max-width: 768px) {
-      .stats { flex-direction: column; align-items: center; }
+      .stats { flex-direction: column; align-items: center; gap: 1.5rem; }
+      .stat { width: 280px; height: 140px; }
       .search-bar { flex-direction: column; align-items: stretch; }
       .templates-grid { grid-template-columns: 1fr; }
       .footer-links { flex-direction: column; gap: 1rem; }
@@ -365,9 +405,47 @@
         </div>
         <p class="subtitle">Open-source website templates for the neuroscience community</p>
         <div class="stats">
-          <div class="stat"><div class="stat-number" id="templateCount">-</div><div class="stat-label">Templates</div></div>
-          <div class="stat"><div class="stat-number" id="categoryCount">-</div><div class="stat-label">Categories</div></div>
-          <div class="stat"><div class="stat-number">100%</div><div class="stat-label">Free</div></div>
+        <div class="stat">
+            <div class="stat-icon" aria-hidden="true">
+            <!-- Flask -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 2h4"></path>
+                <path d="M10 2v6l-5 8a4.5 4.5 0 0 0 3.8 6.8h6.4A4.5 4.5 0 0 0 19 16l-5-8V2"></path>
+                <path d="M9 14h6"></path>
+            </svg>
+            </div>
+            <div>
+            <div class="stat-title">Built by Scientists</div>
+            <div class="stat-description">Made for neuroscientists</div>
+            </div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon" aria-hidden="true">
+            <!-- Cursor -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 3l7 16 2-6 6-2L4 3z"></path>
+                <path d="M13 13l5 5"></path>
+            </svg>
+            </div>
+            <div>
+            <div class="stat-title">Beginner-Friendly</div>
+            <div class="stat-description">No coding experience required</div>
+            </div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon" aria-hidden="true">
+            <!-- Heart -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-7-4.5-9-8a5.5 5.5 0 0 1 9-6 5.5 5.5 0 0 1 9 6c-2 3.5-9 8-9 8z"></path>
+            </svg>
+            </div>
+            <div>
+            <div class="stat-title">100% Free</div>
+            <div class="stat-description">No subscriptions. No ads.</div>
+            </div>
+        </div>
         </div>
       </div>
       <div class="scroll-indicator" onclick="document.querySelector('main').scrollIntoView({behavior:'smooth'})">
@@ -493,13 +571,11 @@
     const styleFilter = document.getElementById('styleFilter');
     const themeFilter = document.getElementById('themeFilter');
     const templatesContainer = document.getElementById('templatesContainer');
-    const templateCount = document.getElementById('templateCount');
-    const categoryCount = document.getElementById('categoryCount');
 
     function updateStats(){
-      templateCount.textContent = templates.length;
-      const categories = new Set(templates.map(t => t.category));
-      categoryCount.textContent = categories.size;
+      // Stats are now static tiles, so this function is no longer needed
+      // but keeping it to avoid errors in case it's called elsewhere
+      console.log(`Loaded ${templates.length} templates in ${new Set(templates.map(t => t.category)).size} categories`);
     }
 
     function filterTemplates(){
@@ -637,11 +713,23 @@
       const categories = [...new Set(templates.map(t => t.category))];
       const filterContainer = document.querySelector('.filter-tabs');
       
-      // "All" button and add category-specific buttons
-      const allButton = filterContainer.querySelector('[data-category="all"]');
+      // Clear container and rebuild all buttons
       filterContainer.innerHTML = '';
+      
+      // Create "All Templates" button
+      const allButton = document.createElement('button');
+      allButton.className = 'filter-tab active';
+      allButton.dataset.category = 'all';
+      allButton.textContent = 'All Templates';
+      allButton.addEventListener('click', (e) => {
+        document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        currentFilter = 'all';
+        renderTemplates();
+      });
       filterContainer.appendChild(allButton);
       
+      // Create category buttons
       categories.forEach(category => {
         const button = document.createElement('button');
         button.className = 'filter-tab';
