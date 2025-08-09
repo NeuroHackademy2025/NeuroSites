@@ -30,22 +30,182 @@
 
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
+    /* ====== Sticky Floating Pill Nav with Dropdown Button ====== */
+    /* Wrapper that manages sticky state */
+    #stickyHeader { position: relative; z-index: 9999; }
+
+    /* Floating pill nav centered under the hero; shrinks on scroll */
+    #stickyHeader nav.pill {
+      position: fixed;
+      left: 0; right: 0; top: 50px;
+      width: 700px; height: 80px; margin: 0 auto;
+      display: flex; justify-content: center; align-items: center; gap: 25px;
+      padding: 0 20px;
+      background-color: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 200px; backdrop-filter: blur(8px);
+      transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1) .2s;
+    }
+
+    #stickyHeader nav.pill a {
+      color: var(--fg); text-decoration: none; font-weight: 700; display: block;
+      padding: 10px 16px; line-height: 1; font-size: 17px; letter-spacing: 2px; text-transform: lowercase;
+      font-family: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
+      font-weight: 900;
+      opacity: 1; transform: scale(1); transition: .4s opacity, .4s transform, .3s font-size;
+    }
+
+    #stickyHeader nav.pill a:hover {
+      font-size: 25px;
+    }
+
+    /* Special styling for active link */
+    #stickyHeader nav.pill a.active {
+      background: var(--accent);
+      border-radius: 200px;
+      color: var(--fg);
+      text-shadow: 
+        -1px -1px 0 rgba(255,255,255,.12),
+        1px -1px 0 rgba(255,255,255,.12),
+        -1px 1px 0 rgba(255,255,255,.12),
+        1px 1px 0 rgba(255,255,255,.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Circular menu button that appears when shrunk */
+    #openmenu {
+      -webkit-appearance: none; appearance: none; cursor: pointer; outline: 0; border: 0;
+      position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: auto;
+      width: 50px; height: 50px; border-radius: 50%;
+      background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(5px);
+      display: flex; align-items: center; justify-content: center; gap: 6px; flex-direction: column;
+      transform: scale(0); transition: .3s transform ease .2s, border-color .3s;
+    }
+    #openmenu span { width: 40%; height: 2px; background: var(--fg); transform: scaleX(0); transition: .5s transform ease .1s, .2s margin; }
+    #openmenu:hover { border-color: rgba(255,255,255,.5); }
+    #openmenu:hover span { margin: 2px 0; }
+
+    /* Sticky (scrolled) state shrinks the pill into a circle and hides links */
+    #stickyHeader.sticky nav.pill { top: 20px; width: 80px; height: 80px; padding: 0; }
+    #stickyHeader.sticky nav.pill a { opacity: 0; transform: scale(.4); pointer-events: none; }
+    #stickyHeader.sticky #openmenu { transform: scale(1); }
+    #stickyHeader.sticky #openmenu span { transform: scaleX(1); }
+
+    /* Page blur/zoom when menu is open */
+    #page { position: relative; transition: 1s all ease-in-out; }
+    #page.menuopen { opacity: .6; filter: blur(16px); transform: scale(1.02); }
+
+    /* Fullscreen dropdown menu */
+    .dropdown-overlay { position: fixed; inset: 0; display: none; place-items: center; background: rgba(0,0,0,.6); z-index: 9998; }
+    .dropdown-overlay.active { display: grid; }
+    .dropdown-panel {
+      width: min(92vw, 720px);
+      background: rgba(16,21,50,.9);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 24px;
+      backdrop-filter: blur(10px);
+      padding: 28px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.4);
+      animation: panelIn .35s ease;
+    }
+    @keyframes panelIn { from { transform: translateY(10px); opacity: 0;} to { transform: translateY(0); opacity: 1;} }
+
+    /* AGGRESSIVE underline removal for menu cards */
+    a.menu-card,
+    a.menu-card:link,
+    a.menu-card:visited,
+    a.menu-card:hover,
+    a.menu-card:active,
+    a.menu-card:focus {
+      text-decoration: none !important;
+      text-decoration-line: none !important;
+      text-decoration-style: none !important;
+      text-decoration-color: transparent !important;
+      text-underline-offset: 0 !important;
+      border-bottom: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+    
+    a.menu-card h4,
+    a.menu-card p,
+    a.menu-card:link h4,
+    a.menu-card:link p,
+    a.menu-card:visited h4,
+    a.menu-card:visited p,
+    a.menu-card:hover h4,
+    a.menu-card:hover p,
+    a.menu-card:active h4,
+    a.menu-card:active p,
+    a.menu-card:focus h4,
+    a.menu-card:focus p {
+      text-decoration: none !important;
+      text-decoration-line: none !important;
+      text-decoration-style: none !important;
+      text-decoration-color: transparent !important;
+      text-underline-offset: 0 !important;
+      border-bottom: none !important;
+    }
+
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .menu-card { background: rgba(250,253,255,.06); border: 1px solid rgba(250,253,255,.12); border-radius: 16px; padding: 16px; transition: transform .2s, box-shadow .2s; }
+    .menu-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.25); }
+    .menu-card h4 { margin-bottom: 6px; font-size: 1rem; color: var(--fg); letter-spacing: .5px; }
+    .menu-card p { margin: 0; font-size: .9rem; color: rgba(250,253,255,.75); }
+    /* Remove underlines from menu card links completely */
+    .menu-card a { 
+      color: var(--fg) !important; 
+      text-decoration: none !important; 
+      text-decoration-line: none !important;
+      text-decoration-style: none !important;
+      text-decoration-color: transparent !important;
+      display: block; 
+      border: none !important;
+      border-bottom: none !important;
+      outline: none !important;
+    }
+    .menu-card a:hover, 
+    .menu-card a:visited, 
+    .menu-card a:focus, 
+    .menu-card a:active,
+    .menu-card a:link { 
+      text-decoration: none !important; 
+      text-decoration-line: none !important;
+      text-decoration-style: none !important;
+      text-decoration-color: transparent !important;
+      border: none !important;
+      border-bottom: none !important;
+      outline: none !important;
+    }
+    /* Ensure child elements don't inherit underlines */
+    .menu-card a h4,
+    .menu-card a p,
+    .menu-card a *,
+    a.menu-card h4,
+    a.menu-card p,
+    a.menu-card * {
+      text-decoration: none !important;
+      text-decoration-line: none !important;
+      text-decoration-style: none !important;
+      text-decoration-color: transparent !important;
+      border-bottom: none !important;
+    }
+
+    .overlay-actions { display: flex; justify-content: flex-end; margin-top: 16px; gap: 10px; }
+    .btn { padding: .65rem 1rem; border-radius: 10px; border: 1px solid rgba(255,255,255,.2); background: transparent; color: var(--fg); cursor: pointer; }
+    .btn:hover { background: rgba(250,253,255,.08); }
+
     /* ====== Header ====== */
     header { 
       background: var(--bg);
       backdrop-filter: blur(10px);
       box-shadow: 0 2px 20px var(--shadow);
-      padding: 2rem 0;
+      padding: 8rem 0 2rem 0;
       margin-bottom: 3rem;
     }
-
-    nav { display: flex; justify-content: center; align-items: center; gap: 2rem; }
-    nav a { 
-      color: var(--fg); text-decoration: none; font-weight: 500; 
-      padding: 0.5rem 1rem; border-radius: 25px; transition: all 0.3s ease;
-    }
-    nav a:hover { background: var(--accent); }
-    nav a.active { background: var(--accent); }
 
     /* ====== Content ====== */
     main { max-width: 900px; margin: 0 auto; padding: 0 20px 3rem 20px; }
@@ -99,21 +259,68 @@
     .footer-links a:hover { text-decoration: underline; }
 
     @media (max-width: 768px) {
-      nav { flex-direction: column; gap: 1rem; }
       h1 { font-size: 2rem; }
       .footer-links { flex-direction: column; gap: 1rem; }
+      #stickyHeader nav.pill { top: 30px; width: 86vw; height: 82px; }
+      #stickyHeader.sticky nav.pill { width: 86px; height: 86px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <nav>
+  <!-- Sticky / Floating pill + dropdown -->
+  <div id="stickyHeader">
+    <nav class="pill" aria-label="Primary">
       <a href="index.html">Templates</a>
       <a href="guide.html">Guide</a>
       <a href="support.html" class="active">Support</a>
       <a href="contribute.html">Contribute</a>
       <a href="about.html">About</a>
+      <button id="openmenu" aria-label="Open menu" aria-haspopup="dialog" aria-controls="dropdownOverlay">
+        <span></span><span></span>
+      </button>
     </nav>
+  </div>
+
+  <!-- Fullscreen dropdown panel (opens from the button) -->
+  <div class="dropdown-overlay" id="dropdownOverlay" role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="dropdown-panel">
+      <div class="menu-grid">
+        <a class="menu-card" href="index.html">
+          <h4>Browse Templates</h4>
+          <p>Explore lab sites, personal pages, and package wikis.</p>
+        </a>
+        <a class="menu-card" href="guide.html">
+          <h4>Guide</h4>
+          <p>Learn how to find, customize, and deploy templates.</p>
+        </a>
+        <a class="menu-card" href="support.html">
+          <h4>Support</h4>
+          <p>Get help or report problems.</p>
+        </a>
+        <a class="menu-card" href="contribute.html">
+          <h4>Contribute Templates</h4>
+          <p>Share your designs with the community.</p>
+        </a>
+        <a class="menu-card" href="about.html">
+          <h4>About</h4>
+          <p>Learn about our mission and contributors.</p>
+        </a>
+        <a class="menu-card" href="https://github.com/NeuroHackademy2025/NeuroSites" target="_blank" rel="noopener">
+          <h4>GitHub Repository</h4>
+          <p>View source code and contribute.</p>
+        </a>
+      </div>
+      <div class="overlay-actions">
+        <button class="btn" id="closeOverlay">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="page">
+  <header>
+    <div class="container">
+      <h1>Support & Help</h1>
+    </div>
   </header>
 
   <main>
@@ -199,5 +406,44 @@
       </div>
     </div>
   </footer>
+  </div>
+
+  <script>
+    // ====== Sticky header and dropdown menu functionality ======
+    (() => {
+      const stickyHeader = document.getElementById('stickyHeader');
+      const page = document.getElementById('page') || document.body; // fallback
+      const openBtn = document.getElementById('openmenu');
+      const overlay = document.getElementById('dropdownOverlay');
+      const closeOverlay = document.getElementById('closeOverlay');
+
+      const onScroll = () => {
+        page.classList.remove('menuopen');
+        if (window.scrollY >= 100) stickyHeader.classList.add('sticky');
+        else stickyHeader.classList.remove('sticky');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      function openMenu(){ overlay.classList.add('active'); page.classList.add('menuopen'); }
+      function closeMenu(){ overlay.classList.remove('active'); page.classList.remove('menuopen'); }
+
+      openBtn.addEventListener('click', openMenu);
+      closeOverlay.addEventListener('click', closeMenu);
+      overlay.addEventListener('click', (e)=>{ if (e.target === overlay) closeMenu(); });
+
+      // Smooth-scroll for nav links
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href');
+          if (id.length > 1) {
+            e.preventDefault();
+            document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+            closeMenu();
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
