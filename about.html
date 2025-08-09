@@ -1,0 +1,240 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - NeuroSites</title>
+  <style>
+    /* ====== Base Palette ====== */
+    :root {
+      --bg: #101532;
+      --fg: #fafdff;
+      --muted: rgba(250, 253, 255, 0.8);
+      --card: rgba(250, 253, 255, 0.1);
+      --shadow: rgba(16, 21, 50, 0.4);
+      --border: #e1e8ed;
+      --accent: #6288a7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--fg);
+      background: var(--bg);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* ====== Header ====== */
+    header { 
+      background: var(--bg);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px var(--shadow);
+      padding: 2rem 0;
+      margin-bottom: 3rem;
+    }
+
+    nav { display: flex; justify-content: center; align-items: center; gap: 2rem; }
+    nav a { 
+      color: var(--fg); text-decoration: none; font-weight: 500; 
+      padding: 0.5rem 1rem; border-radius: 25px; transition: all 0.3s ease;
+    }
+    nav a:hover { background: var(--accent); }
+    nav a.active { background: var(--accent); }
+
+    /* ====== Content ====== */
+    main { max-width: 900px; margin: 0 auto; padding: 0 20px 3rem 20px; }
+    
+    h1 { font-size: 2.5rem; margin-bottom: 2rem; text-align: center; }
+    h2 { font-size: 1.8rem; margin: 2rem 0 1rem 0; color: var(--fg); }
+    h3 { font-size: 1.4rem; margin: 1.5rem 0 0.5rem 0; color: var(--fg); }
+    
+    p { margin-bottom: 1rem; color: var(--muted); line-height: 1.8; }
+    
+    ul, ol { margin-bottom: 1rem; padding-left: 1.5rem; color: var(--muted); }
+    li { margin-bottom: 0.5rem; }
+    
+    a { color: var(--accent); text-decoration: underline; }
+    a:hover { color: var(--fg); }
+
+    .highlight-box {
+      background: var(--card);
+      border: 1px solid rgba(250, 253, 255, 0.2);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    /* ====== Footer ====== */
+    footer { 
+      background: rgba(250, 253, 255, 0.95); 
+      backdrop-filter: blur(10px); 
+      padding: 3rem 0; 
+      margin-top: 3rem; 
+      text-align: center; 
+    }
+    .footer-content { color: #5a6b7a; line-height: 1.8; }
+    .footer-links { 
+      margin-top: 1rem; 
+      display: flex; 
+      justify-content: center; 
+      gap: 2rem; 
+      flex-wrap: wrap; 
+    }
+    .footer-links a { 
+      color: #101532; 
+      text-decoration: none; 
+      font-weight: 500; 
+    }
+    .footer-links a:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      nav { flex-direction: column; gap: 1rem; }
+      h1 { font-size: 2rem; }
+      .footer-links { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Templates</a>
+      <a href="guide.html">Guide</a>
+      <a href="support.html">Support</a>
+      <a href="contribute.html">Contribute</a>
+      <a href="about.html" class="active">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>About NeuroSites</h1>
+    
+    <h2>Our Mission</h2>
+    <p>NeuroSites was created to democratize web design for the neuroscience community. We believe that beautiful, functional websites shouldn't require extensive coding knowledge or expensive design tools. Our mission is to provide high-quality, free website templates specifically designed for researchers, labs, and neuroscience organizations.</p>
+    
+    <div class="highlight-box">
+      <h3>Making Science More Accessible</h3>
+      <p>By lowering the barriers to creating professional websites, we help researchers focus on what they do best—advancing our understanding of the brain and nervous system.</p>
+    </div>
+
+    <h2>Origins</h2>
+    <p>This project emerged from <a href="https://neurohackademy.org/" target="_blank" rel="noopener">Neurohackademy 2025</a>, a summer school that brings together researchers, students, and developers to advance open science in neuroscience through collaborative coding and tool development.</p>
+    
+    <p>During the hackathon, participants identified a common need in the community: accessible, professional website templates tailored for neuroscience research. The idea for NeuroSites was born from discussions about how many researchers struggle with web development, often resorting to basic templates that don't reflect the quality and innovation of their work.</p>
+
+    <h2>What Makes Us Different</h2>
+    <ul>
+      <li><strong>Neuroscience-Focused:</strong> Templates designed specifically for research contexts</li>
+      <li><strong>Community-Driven:</strong> Built by researchers, for researchers</li>
+      <li><strong>Open Source:</strong> Completely free and transparent</li>
+      <li><strong>High Quality:</strong> Professional designs that enhance credibility</li>
+      <li><strong>Easy to Use:</strong> No coding experience required for basic customization</li>
+      <li><strong>Responsive:</strong> Works perfectly on all devices</li>
+    </ul>
+
+    <h2>Contributors</h2>
+    <p>NeuroSites is made possible by the dedication of our community contributors:</p>
+    
+    <h3>Project Founders</h3>
+    <ul>
+      <li><strong>Neurohackademy 2025 Participants</strong> - Initial concept and development</li>
+      <li><strong>Summer School Mentors</strong> - Guidance and technical leadership</li>
+    </ul>
+
+    <h3>Core Development Team</h3>
+    <ul>
+      <li><strong>Community Developers</strong> - Open source contributors from the neuroscience community</li>
+      <li><strong>Design Contributors</strong> - Researchers and designers sharing their expertise</li>
+      <li><strong>Technical Reviewers</strong> - Ensuring quality and compatibility</li>
+    </ul>
+
+    <h3>Template Contributors</h3>
+    <ul>
+      <li><strong>Research Labs</strong> - Sharing their website designs</li>
+      <li><strong>Individual Researchers</strong> - Contributing personal page templates</li>
+      <li><strong>Web Developers</strong> - Creating specialized templates for the community</li>
+    </ul>
+
+    <h3>Community Maintainers</h3>
+    <ul>
+      <li><strong>Issue Triagers</strong> - Helping with bug reports and feature requests</li>
+      <li><strong>Documentation Writers</strong> - Improving guides and instructions</li>
+      <li><strong>Code Reviewers</strong> - Ensuring code quality and security</li>
+    </ul>
+
+    <h2>Open Source Commitment</h2>
+    <p>All templates are released under the <a href="https://github.com/NeuroHackademy2025/NeuroSites/blob/main/LICENSE" target="_blank" rel="noopener">CC BY 4.0 license</a>, making them free to use, modify, and share. We encourage adaptation and improvement of all designs.</p>
+    
+    <div class="highlight-box">
+      <h3>Why Open Source?</h3>
+      <p>Open source development ensures transparency, promotes collaboration, and guarantees that these resources will always be freely available to the research community. It also allows for continuous improvement through community contributions.</p>
+    </div>
+
+    <h2>Impact</h2>
+    <p>Since our launch, NeuroSites has:</p>
+    <ul>
+      <li>Provided templates for dozens of research websites</li>
+      <li>Saved researchers countless hours of development time</li>
+      <li>Improved the online presence of neuroscience organizations</li>
+      <li>Fostered collaboration between technical and research communities</li>
+      <li>Contributed to the broader open science movement</li>
+    </ul>
+
+    <h2>Future Goals</h2>
+    <p>We're continuously working to:</p>
+    <ul>
+      <li>Expand our template collection across more specialties</li>
+      <li>Improve accessibility and inclusion in all designs</li>
+      <li>Develop better customization tools</li>
+      <li>Create educational resources for web development</li>
+      <li>Build partnerships with neuroscience organizations</li>
+      <li>Support emerging web technologies and standards</li>
+    </ul>
+
+    <h2>Get Involved</h2>
+    <p>NeuroSites thrives because of community involvement. Here's how you can contribute:</p>
+    
+    <ul>
+      <li><strong>Use Our Templates:</strong> The best way to support us is to use our templates for your projects</li>
+      <li><strong>Share Your Designs:</strong> <a href="contribute.html">Contribute your own templates</a> to help others</li>
+      <li><strong>Report Issues:</strong> Help us improve by <a href="support.html">reporting bugs or suggesting features</a></li>
+      <li><strong>Spread the Word:</strong> Tell other researchers about NeuroSites</li>
+      <li><strong>Join Development:</strong> Contribute code, documentation, or design skills</li>
+    </ul>
+
+    <h2>Acknowledgments</h2>
+    <p>Special thanks to:</p>
+    <ul>
+      <li>The <a href="https://neurohackademy.org/" target="_blank" rel="noopener">Neurohackademy</a> community for fostering innovation and collaboration</li>
+      <li>All our template contributors who generously share their work</li>
+      <li>The open source community for providing the tools and platforms that make this project possible</li>
+      <li>Research institutions that support open science initiatives</li>
+      <li>Every researcher who chooses to make their work more accessible online</li>
+    </ul>
+
+    <p>Together, we're making neuroscience more accessible, one website at a time.</p>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p><strong>NeuroSites</strong> - Making beautiful neuroscience websites accessible to everyone</p>
+        <p>All templates are licensed under CC BY 4.0. Use them freely, just give credit!</p>
+        <div class="footer-links">
+          <a href="https://github.com/NeuroHackademy2025/NeuroSites" target="_blank" rel="noopener">GitHub Repository</a>
+          <a href="guide.html">Guide</a>
+          <a href="support.html">Support</a>
+          <a href="contribute.html">Contribute Templates</a>
+          <a href="about.html">About Us</a>
+          <a href="https://github.com/NeuroHackademy2025/NeuroSites/blob/main/LICENSE" target="_blank" rel="noopener">License</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
