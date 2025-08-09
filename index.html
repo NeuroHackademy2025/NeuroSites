@@ -228,7 +228,8 @@
     .btn:hover { background: rgba(250,253,255,.08); }
 
     /* ====== Search Template Cards ====== */
-    main .search-filter { background: var(--fg); color: #101532; padding: 0; border-radius: 15px; box-shadow: 0 10px 30px rgba(16, 21, 50, 0.15); margin-bottom: 3rem; overflow: hidden; }
+    main { background: var(--fg); color: #101532; padding: 0; border-radius: 15px; box-shadow: 0 10px 30px rgba(16, 21, 50, 0.15); margin-bottom: 3rem; overflow: hidden; max-width: 1000px; margin-left: auto; margin-right: auto; }
+    main .search-filter { background: transparent; color: inherit; padding: 0; border-radius: 0; box-shadow: none; margin-bottom: 0; overflow: visible; }
     
     /* Category Tabs */
     .filter-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); background: rgba(250, 253, 255, 0.95); }
@@ -269,7 +270,7 @@
     }
     .dropdown-select:hover, .dropdown-select:focus { border-color: var(--accent); }
 
-    .templates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+    .templates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 0; padding: 2rem; }
     .template-card { background: var(--fg); color: var(--bg); border-radius: 15px; box-shadow: 0 10px 30px rgba(16, 21, 50, 0.15); overflow: hidden; transition: transform .3s ease, box-shadow .3s ease; cursor: pointer; }
     .template-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(16, 21, 50, 0.25); }
     .template-preview { height: 200px; background: linear-gradient(45deg, #f0f4f7, #e8eff3); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: #5a6b7a; position: relative; overflow: hidden; }
