@@ -19,7 +19,8 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+      font-weight: 400;
       line-height: 1.6;
       color: var(--fg);
       background: var(--bg);
@@ -44,14 +45,14 @@
     .header-content { text-align: center; }
     .logo-container { margin-bottom: .5rem; }
     .logo { max-height: 400px; width: auto; margin: 0 auto; display: block; }
-    .subtitle { font-size: 1.2rem; color: var(--muted); margin-bottom: 2rem; }
+    .subtitle { font-size: 1.2rem; color: var(--muted); margin-bottom: 3rem; }
 
-    .stats { display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; }
+    .stats { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2.5rem; }
     .stat { text-align: center; padding: 1rem; background: var(--card); border-radius: 10px; min-width: 120px; }
     .stat-number { font-size: 2rem; font-weight: bold; color: var(--fg); }
-    .stat-label { font-size: .9rem; color: rgba(250, 253, 255, 0.7); }
+    .stat-label { font-size: 1rem; color: rgba(250, 253, 255, 0.7); }
 
-    .scroll-indicator { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; color: rgba(250, 253, 255, 0.7); cursor: pointer; transition: all .3s ease; animation: bounce 2s infinite; z-index: 2; }
+    .scroll-indicator { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; color: rgba(250, 253, 255, 0.7); cursor: pointer; transition: all .3s ease; animation: bounce 2s infinite; z-index: 2; }
     .scroll-indicator:hover { color: var(--accent); }
     .scroll-arrow { font-size: 1.5rem; margin-bottom: .5rem; }
     .scroll-text { font-size: .8rem; text-transform: uppercase; letter-spacing: 1px; }
@@ -65,8 +66,8 @@
     #stickyHeader nav.pill {
       position: fixed;
       left: 0; right: 0; top: 50px;
-      width: 520px; height: 100px; margin: 0 auto;
-      display: flex; justify-content: center; align-items: center; gap: 8px;
+      width: 590px; height: 80px; margin: 0 auto;
+      display: flex; justify-content: center; align-items: center; gap: 25px;
       padding: 0 20px;
       background-color: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.12);
@@ -76,15 +77,33 @@
 
     #stickyHeader nav.pill a {
       color: var(--fg); text-decoration: none; font-weight: 700; display: block;
-      padding: 10px 16px; line-height: 1; font-size: 14px; letter-spacing: 2px; text-transform: lowercase;
+      padding: 10px 16px; line-height: 1; font-size: 17px; letter-spacing: 2px; text-transform: lowercase;
+      font-family: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
+      font-weight: 900;
       opacity: 1; transform: scale(1); transition: .4s opacity, .4s transform;
+    }
+
+    /* Special styling for Templates link */
+    #stickyHeader nav.pill a[href="#templates"] {
+      background: var(--accent);
+      width: 550px; height: 40px; margin: 0 auto;
+      border-radius: 200px;
+      color: var(--fg);
+      text-shadow: 
+        -1px -1px 0 rgba(255,255,255,.12),
+        1px -1px 0 rgba(255,255,255,.12),
+        -1px 1px 0 rgba(255,255,255,.12),
+        1px 1px 0 rgba(255,255,255,.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* Circular menu button that appears when shrunk */
     #openmenu {
       -webkit-appearance: none; appearance: none; cursor: pointer; outline: 0; border: 0;
       position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: auto;
-      width: 64px; height: 64px; border-radius: 50%;
+      width: 50px; height: 50px; border-radius: 50%;
       background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.18);
       backdrop-filter: blur(5px);
       display: flex; align-items: center; justify-content: center; gap: 6px; flex-direction: column;
@@ -95,7 +114,7 @@
     #openmenu:hover span { margin: 2px 0; }
 
     /* Sticky (scrolled) state shrinks the pill into a circle and hides links */
-    #stickyHeader.sticky nav.pill { top: 20px; width: 94px; height: 94px; padding: 0; }
+    #stickyHeader.sticky nav.pill { top: 20px; width: 80px; height: 80px; padding: 0; }
     #stickyHeader.sticky nav.pill a { opacity: 0; transform: scale(.4); pointer-events: none; }
     #stickyHeader.sticky #openmenu { transform: scale(1); }
     #stickyHeader.sticky #openmenu span { transform: scaleX(1); }
@@ -119,12 +138,86 @@
     }
     @keyframes panelIn { from { transform: translateY(10px); opacity: 0;} to { transform: translateY(0); opacity: 1;} }
 
+    /* AGGRESSIVE underline removal for menu cards */
+    a.menu-card,
+    a.menu-card:link,
+    a.menu-card:visited,
+    a.menu-card:hover,
+    a.menu-card:active,
+    a.menu-card:focus {
+      text-decoration: none !important;
+      text-decoration-line: none !important;
+      text-decoration-style: none !important;
+      text-decoration-color: transparent !important;
+      text-underline-offset: 0 !important;
+      border-bottom: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+    
+    a.menu-card h4,
+    a.menu-card p,
+    a.menu-card:link h4,
+    a.menu-card:link p,
+    a.menu-card:visited h4,
+    a.menu-card:visited p,
+    a.menu-card:hover h4,
+    a.menu-card:hover p,
+    a.menu-card:active h4,
+    a.menu-card:active p,
+    a.menu-card:focus h4,
+    a.menu-card:focus p {
+      text-decoration: none !important;
+      text-decoration-line: none !important;
+      text-decoration-style: none !important;
+      text-decoration-color: transparent !important;
+      text-underline-offset: 0 !important;
+      border-bottom: none !important;
+    }
+
     .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
     .menu-card { background: rgba(250,253,255,.06); border: 1px solid rgba(250,253,255,.12); border-radius: 16px; padding: 16px; transition: transform .2s, box-shadow .2s; }
     .menu-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.25); }
     .menu-card h4 { margin-bottom: 6px; font-size: 1rem; color: var(--fg); letter-spacing: .5px; }
     .menu-card p { margin: 0; font-size: .9rem; color: rgba(250,253,255,.75); }
-    .menu-card a { color: var(--fg); text-decoration: none; display: block; }
+    /* Remove underlines from menu card links completely */
+    .menu-card a { 
+      color: var(--fg) !important; 
+      text-decoration: none !important; 
+      text-decoration-line: none !important;
+      text-decoration-style: none !important;
+      text-decoration-color: transparent !important;
+      display: block; 
+      border: none !important;
+      border-bottom: none !important;
+      outline: none !important;
+    }
+    .menu-card a:hover, 
+    .menu-card a:visited, 
+    .menu-card a:focus, 
+    .menu-card a:active,
+    .menu-card a:link { 
+      text-decoration: none !important; 
+      text-decoration-line: none !important;
+      text-decoration-style: none !important;
+      text-decoration-color: transparent !important;
+      border: none !important;
+      border-bottom: none !important;
+      outline: none !important;
+    }
+    /* Ensure child elements don't inherit underlines */
+    .menu-card a h4,
+    .menu-card a p,
+    .menu-card a *,
+    a.menu-card h4,
+    a.menu-card p,
+    a.menu-card * {
+      text-decoration: none !important;
+      text-decoration-line: none !important;
+      text-decoration-style: none !important;
+      text-decoration-color: transparent !important;
+      border-bottom: none !important;
+    }
 
     .overlay-actions { display: flex; justify-content: flex-end; margin-top: 16px; gap: 10px; }
     .btn { padding: .65rem 1rem; border-radius: 10px; border: 1px solid rgba(255,255,255,.2); background: transparent; color: var(--fg); cursor: pointer; }
@@ -150,7 +243,7 @@
     .tag { background: rgba(98, 136, 167, 0.15); color: #6288a7; padding: .3rem .8rem; border-radius: 15px; font-size: .8rem; font-weight: 500; }
 
     .template-actions { display: flex; gap: .5rem; }
-    .btn-link { padding: .7rem 1.2rem; border: none; border-radius: 8px; cursor: pointer; font-size: .9rem; font-weight: 500; text-decoration: none; text-align: center; transition: all .3s ease; display: inline-block; }
+    .btn-link { padding: .7rem 1.2rem; border: none; border-radius: 8px; cursor: pointer; font-size: .95rem; font-weight: 500; text-decoration: none; text-align: center; transition: all .3s ease; display: inline-block; }
     .btn-primary { background: var(--accent); color: var(--fg); }
     .btn-primary:hover { background: var(--bg); transform: translateY(-2px); }
     .btn-secondary { background: transparent; color: var(--bg); border: 1px solid var(--bg); }
@@ -406,8 +499,91 @@
     }
 
 
+    // Temporary static template data for styling development
+    function loadDevelopmentTemplates() {
+      templates = [
+        {
+          id: 'lab-template-1',
+          title: 'Modern Lab Website',
+          description: 'A clean and modern lab website template with sections for research, publications, and team members.',
+          category: 'Lab Websites',
+          tags: ['Lab Websites', 'Research', 'Publications', 'Team'],
+          preview: null,
+          demoUrl: '#',
+          downloadUrl: '#'
+        },
+        {
+          id: 'personal-page-1',
+          title: 'Academic Portfolio',
+          description: 'A professional personal page template perfect for academic researchers and professionals.',
+          category: 'Personal Pages',
+          tags: ['Personal Pages', 'Professional', 'Academic'],
+          preview: null,
+          demoUrl: '#',
+          downloadUrl: '#'
+        },
+        {
+          id: 'event-template-1',
+          title: 'Conference Website',
+          description: 'A comprehensive event promotion template perfect for conferences, workshops, and symposiums.',
+          category: 'Event Promotions',
+          tags: ['Event Promotions', 'Conference', 'Workshop'],
+          preview: null,
+          demoUrl: '#',
+          downloadUrl: '#'
+        },
+        {
+          id: 'package-wiki-1',
+          title: 'Python Package Docs',
+          description: 'A clean documentation template for Python packages with comprehensive sections.',
+          category: 'Package Wikis',
+          tags: ['Package Wikis', 'Python', 'Documentation'],
+          preview: null,
+          demoUrl: '#',
+          downloadUrl: '#'
+        },
+        {
+          id: 'lab-template-2',
+          title: 'Minimal Lab Site',
+          description: 'A minimal and clean lab website template focusing on content over design.',
+          category: 'Lab Websites',
+          tags: ['Lab Websites', 'Minimal', 'Clean'],
+          preview: null,
+          demoUrl: '#',
+          downloadUrl: '#'
+        },
+        {
+          id: 'personal-page-2',
+          title: 'Researcher Profile',
+          description: 'A comprehensive personal page template for researchers with CV and publications.',
+          category: 'Personal Pages',
+          tags: ['Personal Pages', 'CV', 'Publications'],
+          preview: null,
+          demoUrl: '#',
+          downloadUrl: '#'
+        }
+      ];
+      
+      console.log('Loaded development templates:', templates);
+      updateStats();
+      renderTemplates();
+      updateFilterButtons();
+    }
 
     async function fetchTemplatesFromRepository(){
+      // Temporarily use static data for development
+      console.log('Using development templates for styling work...');
+      templatesContainer.innerHTML = '<div class="loading">Loading templates...</div>';
+      
+      // Simulate loading delay
+      setTimeout(() => {
+        loadDevelopmentTemplates();
+      }, 500);
+      
+      return;
+      
+      // Original API code (commented out for development):
+      /*
       try {
         templatesContainer.innerHTML = '<div class="loading">Loading templates...</div>';
         
@@ -519,6 +695,7 @@
           <p>Try visiting the <a href="https://neurohackademy2025.github.io/NeuroSites/" target="_blank" style="color: #6288a7; text-decoration: underline;">live GitHub Pages site</a> instead.</p>
         </div>`;
       }
+      */
     }
 
     document.addEventListener('DOMContentLoaded', () => { setupFilters(); fetchTemplatesFromRepository(); });
