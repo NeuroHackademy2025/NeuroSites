@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -317,7 +318,7 @@
       });
     })();
 
-    // ====== Your existing template loader (adapted) ======
+    // ====== Template loader (fixed version from second script) ======
     let templates = [];
     let currentFilter = 'all';
     let searchTerm = '';
@@ -335,7 +336,10 @@
 
     function filterTemplates(){
       return templates.filter(t => {
-        const matchesSearch = !searchTerm || t.title.toLowerCase().includes(searchTerm) || t.description.toLowerCase().includes(searchTerm) || (t.tags||[]).some(tag => tag.toLowerCase().includes(searchTerm));
+        const matchesSearch = !searchTerm || 
+          t.title.toLowerCase().includes(searchTerm) || 
+          t.description.toLowerCase().includes(searchTerm) || 
+          (t.tags && t.tags.some && t.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
         const matchesCategory = currentFilter === 'all' || t.category === currentFilter;
         return matchesSearch && matchesCategory;
       });
@@ -377,46 +381,227 @@
       searchInput.addEventListener('input', (e)=>{ searchTerm = e.target.value.toLowerCase(); renderTemplates(); });
     }
 
+    function updateFilterButtons() {
+      const categories = [...new Set(templates.map(t => t.category))];
+      const filterContainer = document.querySelector('.filter-buttons');
+      
+      // Keep the "All" button and add category-specific buttons
+      const allButton = filterContainer.querySelector('[data-category="all"]');
+      filterContainer.innerHTML = '';
+      filterContainer.appendChild(allButton);
+      
+      categories.forEach(category => {
+        const button = document.createElement('button');
+        button.className = 'filter-btn';
+        button.dataset.category = category;
+        button.textContent = category;
+        button.addEventListener('click', (e) => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          e.target.classList.add('active');
+          currentFilter = e.target.dataset.category;
+          renderTemplates();
+        });
+        filterContainer.appendChild(button);
+      });
+    }
+
+    // Static template data to avoid GitHub API rate limiting
+    function loadStaticTemplates() {
+      templates = [
+        {
+          id: 'event-template1',
+          title: 'Event Template 1',
+          description: 'A comprehensive event promotion template perfect for conferences, workshops, and neuroscience symposiums.',
+          category: 'Event Promotions',
+          tags: ['Event Promotions', 'Conference', 'Workshop'],
+          preview: 'templates/Event-Promotions/event-template1/preview.png',
+          demoUrl: 'templates/Event-Promotions/event-template1/',
+          downloadUrl: 'https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/Event-Promotions/event-template1'
+        },
+        {
+          id: 'Example-Event-Template',
+          title: 'Example Event Template',
+          description: 'A versatile event template with speaker profiles, schedule, and registration features.',
+          category: 'Event Promotions',
+          tags: ['Event Promotions', 'Speaker', 'Schedule'],
+          preview: 'templates/Event-Promotions/Example-Event-Template/preview.png',
+          demoUrl: 'templates/Event-Promotions/Example-Event-Template/',
+          downloadUrl: 'https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/Event-Promotions/Example-Event-Template'
+        },
+        {
+          id: 'Example-Lab-Template',
+          title: 'Example Lab Template',
+          description: 'A comprehensive lab website template with sections for research, publications, and team members.',
+          category: 'Lab Websites',
+          tags: ['Lab Websites', 'Research', 'Publications', 'Team'],
+          preview: 'templates/Lab-Websites/Example-Lab-Template/preview.png',
+          demoUrl: 'templates/Lab-Websites/Example-Lab-Template/',
+          downloadUrl: 'https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/Lab-Websites/Example-Lab-Template'
+        },
+        {
+          id: 'Lab-Template-BlueStyle',
+          title: 'Lab Template Blue Style',
+          description: 'A clean and professional blue-themed lab website template.',
+          category: 'Lab Websites',
+          tags: ['Lab Websites', 'Blue Theme', 'Professional'],
+          preview: 'templates/Lab-Websites/Lab-Template-BlueStyle/preview.png',
+          demoUrl: 'templates/Lab-Websites/Lab-Template-BlueStyle/',
+          downloadUrl: 'https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/Lab-Websites/Lab-Template-BlueStyle'
+        },
+        {
+          id: 'Lab-Template-Minimal',
+          title: 'Lab Template Minimal',
+          description: 'A minimal and clean lab website template focusing on content over design.',
+          category: 'Lab Websites',
+          tags: ['Lab Websites', 'Minimal', 'Clean'],
+          preview: 'templates/Lab-Websites/Lab-Template-Minimal/preview.png',
+          demoUrl: 'templates/Lab-Websites/Lab-Template-Minimal/',
+          downloadUrl: 'https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/Lab-Websites/Lab-Template-Minimal'
+        },
+        {
+          id: 'lab-website-blueTemplate',
+          title: 'Lab Website Blue Template',
+          description: 'Another beautiful blue-themed lab website with modern design elements.',
+          category: 'Lab Websites',
+          tags: ['Lab Websites', 'Blue Theme', 'Modern'],
+          preview: 'templates/Lab-Websites/lab-website-blueTemplate/preview.png',
+          demoUrl: 'templates/Lab-Websites/lab-website-blueTemplate/',
+          downloadUrl: 'https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/Lab-Websites/lab-website-blueTemplate'
+        },
+        {
+          id: 'Python-Packages-Blue',
+          title: 'Python Packages Blue',
+          description: 'A blue-themed documentation template for Python packages with comprehensive sections.',
+          category: 'Package Wikis',
+          tags: ['Package Wikis', 'Python', 'Documentation', 'Blue Theme'],
+          preview: 'templates/Package-Wikis/Python-Packages-Blue/preview.png',
+          demoUrl: 'templates/Package-Wikis/Python-Packages-Blue/',
+          downloadUrl: 'https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/Package-Wikis/Python-Packages-Blue'
+        },
+        {
+          id: 'Python-Packages-In_Page',
+          title: 'Python Packages In Page',
+          description: 'A single-page documentation template for Python packages with all content on one page.',
+          category: 'Package Wikis',
+          tags: ['Package Wikis', 'Python', 'Single Page'],
+          preview: 'templates/Package-Wikis/Python-Packages-In_Page/preview.png',
+          demoUrl: 'templates/Package-Wikis/Python-Packages-In_Page/',
+          downloadUrl: 'https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/Package-Wikis/Python-Packages-In_Page'
+        },
+        {
+          id: 'Python-Packages-Minimalist_Blue',
+          title: 'Python Packages Minimalist Blue',
+          description: 'A minimalist blue-themed template for Python package documentation.',
+          category: 'Package Wikis',
+          tags: ['Package Wikis', 'Python', 'Minimalist', 'Blue Theme'],
+          preview: 'templates/Package-Wikis/Python-Packages-Minimalist_Blue/preview.png',
+          demoUrl: 'templates/Package-Wikis/Python-Packages-Minimalist_Blue/',
+          downloadUrl: 'https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/Package-Wikis/Python-Packages-Minimalist_Blue'
+        },
+        {
+          id: 'Example-Personal-Page-Template',
+          title: 'Example Personal Page Template',
+          description: 'A comprehensive personal page template for researchers with CV, publications, and blog sections.',
+          category: 'Personal Pages',
+          tags: ['Personal Pages', 'CV', 'Publications', 'Blog'],
+          preview: 'templates/Personal-Pages/Example-Personal-Page-Template/preview.png',
+          demoUrl: 'templates/Personal-Pages/Example-Personal-Page-Template/',
+          downloadUrl: 'https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/Personal-Pages/Example-Personal-Page-Template'
+        },
+        {
+          id: 'Personal-Page-Professional',
+          title: 'Personal Page Professional',
+          description: 'A professional personal page template perfect for academic researchers and professionals.',
+          category: 'Personal Pages',
+          tags: ['Personal Pages', 'Professional', 'Academic'],
+          preview: 'templates/Personal-Pages/Personal-Page-Professional/preview.png',
+          demoUrl: 'templates/Personal-Pages/Personal-Page-Professional/',
+          downloadUrl: 'https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/Personal-Pages/Personal-Page-Professional'
+        }
+      ];
+      
+      console.log('Loaded static templates:', templates);
+      updateStats();
+      renderTemplates();
+      updateFilterButtons();
+    }
+
     async function fetchTemplatesFromRepository(){
       try {
         templatesContainer.innerHTML = '<div class="loading">Loading templates...</div>';
+        
+        console.log('Attempting to fetch templates from repository...');
+        
+        // Try to fetch from GitHub API with rate limit handling
         const res = await fetch('https://api.github.com/repos/NeuroHackademy2025/NeuroSites/contents/templates');
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        
+        if (res.status === 403) {
+          console.warn('GitHub API rate limit exceeded. Loading static template data...');
+          loadStaticTemplates();
+          return;
+        }
+        
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        }
+        
         const cats = (await res.json()).filter(x => x.type === 'dir' && !x.name.startsWith('.'));
+        console.log('Template categories found:', cats.map(c => c.name));
+        
+        // If API works, use the dynamic loading (but this might still hit rate limits)
         templates = [];
         for (const cat of cats){
-          const r2 = await fetch(`https://api.github.com/repos/NeuroHackademy2025/NeuroSites/contents/templates/${cat.name}`);
-          const contents = await r2.json();
-          const dirs = contents.filter(x => x.type === 'dir' && !x.name.startsWith('.'));
-          for (const d of dirs){
-            let t = {
-              id: d.name,
-              title: d.name.replace(/-/g,' ').replace(/\b\w/g, c => c.toUpperCase()),
-              description: `A ${cat.name.replace('-', ' ')} template for neuroscience websites.`,
-              category: cat.name.replace(/-/g,' ').replace(/\b\w/g, c => c.toUpperCase()),
-              tags: [], preview: null,
-              demoUrl: `templates/${cat.name}/${d.name}/`,
-              downloadUrl: `https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/${cat.name}/${d.name}`
-            };
-            try {
-              const r3 = await fetch(`https://api.github.com/repos/NeuroHackademy2025/NeuroSites/contents/templates/${cat.name}/${d.name}`);
-              const files = await r3.json();
-              const manifest = files.find(f => f.name === 'manifest.json');
-              if (manifest){ Object.assign(t, await (await fetch(manifest.download_url)).json()); }
-              const preview = files.find(f => f.name === 'preview.png' || f.name === 'preview.jpg');
-              if (preview) t.preview = preview.download_url;
-            } catch {}
-            if (Array.isArray(t.tags)){
-              t.tags = [...new Set(t.tags.filter(tag => tag !== t.category))];
-              if (!t.tags.length) t.tags = [t.category];
+          console.log(`Processing category: ${cat.name}`);
+          
+          try {
+            const r2 = await fetch(`https://api.github.com/repos/NeuroHackademy2025/NeuroSites/contents/templates/${cat.name}`);
+            if (r2.status === 403) {
+              console.warn('Rate limit hit during category fetch. Falling back to static data...');
+              loadStaticTemplates();
+              return;
             }
-            templates.push(t);
+            
+            const contents = await r2.json();
+            const dirs = contents.filter(x => x.type === 'dir' && !x.name.startsWith('.'));
+            
+            console.log(`Template dirs in ${cat.name}:`, dirs.map(d => d.name));
+            
+            for (const d of dirs){
+              let t = {
+                id: d.name,
+                title: d.name.replace(/-/g,' ').replace(/\b\w/g, c => c.toUpperCase()),
+                description: `A ${cat.name.replace('-', ' ')} template for neuroscience websites.`,
+                category: cat.name.replace(/-/g,' ').replace(/\b\w/g, c => c.toUpperCase()),
+                tags: [], preview: null,
+                demoUrl: `templates/${cat.name}/${d.name}/`,
+                downloadUrl: `https://download-directory.github.io/?url=https://github.com/NeuroHackademy2025/NeuroSites/tree/main/templates/${cat.name}/${d.name}`
+              };
+              
+              // Skip detailed fetching to avoid more API calls
+              t.tags = [t.category];
+              templates.push(t);
+              console.log(`Added template:`, t);
+            }
+          } catch (categoryError) {
+            console.warn(`Error processing category ${cat.name}:`, categoryError);
           }
         }
-        updateStats();
-        renderTemplates();
+        
+        console.log('Final templates array:', templates);
+        
+        if (templates.length > 0) {
+          updateStats();
+          renderTemplates();
+          updateFilterButtons();
+        } else {
+          console.warn('No templates loaded from API. Falling back to static data...');
+          loadStaticTemplates();
+        }
+        
       } catch (err){
-        templatesContainer.innerHTML = `<div class="no-results"><p>Error loading templates from repository.</p><p>Error: ${err.message}</p></div>`;
+        console.error('Error fetching templates:', err);
+        console.log('Falling back to static template data...');
+        loadStaticTemplates();
       }
     }
 
