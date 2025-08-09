@@ -66,7 +66,7 @@
     #stickyHeader nav.pill {
       position: fixed;
       left: 0; right: 0; top: 50px;
-      width: 590px; height: 80px; margin: 0 auto;
+      width: 700px; height: 80px; margin: 0 auto;
       display: flex; justify-content: center; align-items: center; gap: 25px;
       padding: 0 20px;
       background-color: rgba(255,255,255,.06);
@@ -228,11 +228,11 @@
     .btn:hover { background: rgba(250,253,255,.08); }
 
     /* ====== Search Template Cards ====== */
-    main { background: var(--fg); color: #101532; padding: 0; border-radius: 15px; box-shadow: 0 10px 30px rgba(16, 21, 50, 0.15); margin-bottom: 3rem; overflow: hidden; max-width: 1250px; margin-left: auto; margin-right: auto; }
+    main {background: #E3EBF2; padding: 0; border-radius: 15px; box-shadow: 0 10px 30px rgba(16, 21, 50, 0.15); margin-bottom: 3rem; overflow: hidden; max-width: 1250px; margin-left: auto; margin-right: auto; }
     main .search-filter { background: transparent; color: inherit; padding: 0; border-radius: 0; box-shadow: none; margin-bottom: 0; overflow: visible; }
     
     /* Category Tabs */
-    .filter-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); background: rgba(250, 253, 255, 0.95); }
+    .filter-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); background: #E3EBF2; }
     .filter-tab { 
       padding: 1rem 1rem; border: none; background: transparent; color: #5a6b7a; 
       cursor: pointer; transition: all .3s ease; font-size: 1rem; font-weight: 500;
@@ -311,9 +311,10 @@
   <div id="stickyHeader">
     <nav class="pill" aria-label="Primary">
       <a href="#templates">Templates</a>
-      <a href="#learn">Learn</a>
+      <a href="#learn">Guide</a>
+      <a href="#contact">Support</a>
       <a href="#contribute">Contribute</a>
-      <a href="#contact">Contact</a>
+      <a href="#about">About</a>
       <button id="openmenu" aria-label="Open menu" aria-haspopup="dialog" aria-controls="dropdownOverlay">
         <span></span><span></span>
       </button>
@@ -328,17 +329,25 @@
           <h4>Browse Templates</h4>
           <p>Explore lab sites, personal pages, and package wikis.</p>
         </a>
-        <a class="menu-card" href="https://github.com/NeuroHackademy2025/NeuroSites" target="_blank" rel="noopener">
-          <h4>GitHub Repo</h4>
-          <p>Star, fork, or open an issue.</p>
-        </a>
-        <a class="menu-card" href="#contribute">
-          <h4>How to Contribute</h4>
-          <p>Guidelines for adding your own template.</p>
+        <a class="menu-card" href="#learn">
+          <h4>Guide</h4>
+          <p>Learn how to find, customize, and deploy templates.</p>
         </a>
         <a class="menu-card" href="#contact">
-          <h4>Contact</h4>
-          <p>Say hi or ask a question.</p>
+          <h4>Support</h4>
+          <p>Get help or report problems.</p>
+        </a>
+        <a class="menu-card" href="#contribute">
+          <h4>Contribute Templates</h4>
+          <p>Share your designs with the community.</p>
+        </a>
+        <a class="menu-card" href="#about">
+          <h4>About</h4>
+          <p>Learn about our mission and contributors.</p>
+        </a>
+        <a class="menu-card" href="https://github.com/NeuroHackademy2025/NeuroSites" target="_blank" rel="noopener">
+          <h4>GitHub Repository</h4>
+          <p>View source code and contribute.</p>
         </a>
       </div>
       <div class="overlay-actions">
@@ -363,7 +372,7 @@
       </div>
       <div class="scroll-indicator" onclick="document.querySelector('main').scrollIntoView({behavior:'smooth'})">
         <div class="scroll-arrow">↓</div>
-        <div class="scroll-text">Scroll to explore</div>
+        <div class="scroll-text">Scroll to explore templates</div>
       </div>
     </div>
   </header>
@@ -418,12 +427,100 @@
 
   <!-- Simple anchor targets for the new menu links -->
   <section id="learn" class="container" style="padding: 3rem 20px; max-width: 900px;">
-    <h2 style="margin-bottom: .5rem;">Learn</h2>
-    <p style="opacity:.85;">NeuroSites makes beautiful neuroscience websites accessible to everyone.</p>
+    <h2 style="margin-bottom: 1rem;">How to Use NeuroSites</h2>
+    <div style="line-height: 1.8; color: rgba(250, 253, 255, 0.85);">
+      <h3 style="margin-bottom: 0.5rem; color: var(--fg);">Getting Started</h3>
+      <p style="margin-bottom: 1rem;">Welcome to NeuroSites! Follow these simple steps to find and use the perfect template for your project:</p>
+      
+      <h4 style="margin-bottom: 0.5rem; color: var(--fg);">1. Browse Templates</h4>
+      <p style="margin-bottom: 1rem;">Use the category tabs above to filter templates by type: Lab Websites, Personal Pages, Event Promotions, or Package Wikis. You can also search by keywords or use the dropdown filters for styles and themes.</p>
+      
+      <h4 style="margin-bottom: 0.5rem; color: var(--fg);">2. Preview Templates</h4>
+      <p style="margin-bottom: 1rem;">Click "View Template" to see a live preview of any template. This helps you understand the layout, design, and functionality before downloading.</p>
+      
+      <h4 style="margin-bottom: 0.5rem; color: var(--fg);">3. Download and Customize</h4>
+      <p style="margin-bottom: 1rem;">Click "View Code" to access the template files on GitHub. You can download the entire template folder and customize it with your content, colors, and branding.</p>
+      
+      <h4 style="margin-bottom: 0.5rem; color: var(--fg);">4. Host Your Site</h4>
+      <p>Deploy your customized template using GitHub Pages, Netlify, Vercel, or any web hosting service. Most templates include deployment instructions in their README files.</p>
+    </div>
   </section>
+  
+  <section id="contact" class="container" style="padding: 3rem 20px; max-width: 900px;">
+    <h2 style="margin-bottom: 1rem;">Report Issues & Get Help</h2>
+    <div style="line-height: 1.8; color: rgba(250, 253, 255, 0.85);">
+      <p style="margin-bottom: 1rem;">Found a bug, have a suggestion, or need help with a template? We're here to assist!</p>
+      
+      <h3 style="margin-bottom: 0.5rem; color: var(--fg);">Submit an Issue</h3>
+      <p style="margin-bottom: 1rem;">Use our GitHub Issues page to report problems or request new features:</p>
+      <a href="https://github.com/NeuroHackademy2025/NeuroSites/issues/new" 
+         style="display: inline-block; background: var(--accent); color: var(--fg); padding: 0.75rem 1.5rem; 
+                border-radius: 8px; text-decoration: none; font-weight: 500; margin-bottom: 1rem;">
+        Submit New Issue
+      </a>
+      
+      <h3 style="margin-bottom: 0.5rem; color: var(--fg);">Common Issue Types</h3>
+      <ul style="margin-bottom: 1rem; padding-left: 1.5rem;">
+        <li><strong>Bug Reports:</strong> Template not working as expected</li>
+        <li><strong>Feature Requests:</strong> Ideas for new templates or functionality</li>
+        <li><strong>Template Issues:</strong> Problems with specific templates</li>
+        <li><strong>Documentation:</strong> Unclear instructions or missing information</li>
+      </ul>
+      
+      <p>Browse existing issues and discussions at <a href="https://github.com/NeuroHackademy2025/NeuroSites/issues" style="color: var(--accent); text-decoration: underline;">GitHub Issues</a>.</p>
+    </div>
+  </section>
+
   <section id="contribute" class="container" style="padding: 3rem 20px; max-width: 900px;">
-    <h2 style="margin-bottom: .5rem;">Contribute</h2>
-    <p style="opacity:.85;">Check CONTRIBUTING.md in the GitHub repo to add a template.</p>
+    <h2 style="margin-bottom: 1rem;">Contribute Your Template</h2>
+    <div style="line-height: 1.8; color: rgba(250, 253, 255, 0.85);">
+      <p style="margin-bottom: 1rem;">Help grow the NeuroSites community by contributing your own website templates! Here's how:</p>
+      
+      <h3 style="margin-bottom: 0.5rem; color: var(--fg);">Template Requirements</h3>
+      <ul style="margin-bottom: 1rem; padding-left: 1.5rem;">
+        <li>Clean, responsive HTML/CSS code</li>
+        <li>Relevant to neuroscience or academic communities</li>
+        <li>Include a preview image (preview.png)</li>
+        <li>Add a manifest.json with template metadata</li>
+        <li>Provide clear documentation in README.md</li>
+      </ul>
+      
+      <h3 style="margin-bottom: 0.5rem; color: var(--fg);">Submission Process</h3>
+      <ol style="margin-bottom: 1rem; padding-left: 1.5rem;">
+        <li>Fork the <a href="https://github.com/NeuroHackademy2025/NeuroSites" style="color: var(--accent); text-decoration: underline;">NeuroSites repository</a></li>
+        <li>Add your template to the appropriate category folder</li>
+        <li>Include all required files and documentation</li>
+        <li>Submit a pull request with a clear description</li>
+        <li>Our team will review and provide feedback</li>
+      </ol>
+      
+      <p>For detailed guidelines and examples, check out our <a href="https://github.com/NeuroHackademy2025/NeuroSites/blob/main/CONTRIBUTING.md" style="color: var(--accent); text-decoration: underline;">Contributing Guide</a>.</p>
+    </div>
+  </section>
+
+  <section id="about" class="container" style="padding: 3rem 20px; max-width: 900px;">
+    <h2 style="margin-bottom: 1rem;">About NeuroSites</h2>
+    <div style="line-height: 1.8; color: rgba(250, 253, 255, 0.85);">
+      <h3 style="margin-bottom: 0.5rem; color: var(--fg);">Our Mission</h3>
+      <p style="margin-bottom: 1rem;">NeuroSites was created to democratize web design for the neuroscience community. We believe that beautiful, functional websites shouldn't require extensive coding knowledge or expensive design tools.</p>
+      
+      <h3 style="margin-bottom: 0.5rem; color: var(--fg);">Origins</h3>
+      <p style="margin-bottom: 1rem;">This project emerged from <a href="https://neurohackademy.org/" style="color: var(--accent); text-decoration: underline;">Neurohackademy 2025</a>, a summer school that brings together researchers, students, and developers to advance open science in neuroscience through collaborative coding and tool development.</p>
+      
+      <h3 style="margin-bottom: 0.5rem; color: var(--fg);">Contributors</h3>
+      <p style="margin-bottom: 0.5rem;">NeuroSites is made possible by the dedication of our community contributors:</p>
+      <ul style="margin-bottom: 1rem; padding-left: 1.5rem;">
+        <li><strong>Project Founders:</strong> Neurohackademy 2025 Participants</li>
+        <li><strong>Core Development Team:</strong> Open source contributors from the neuroscience community</li>
+        <li><strong>Template Contributors:</strong> Researchers and developers sharing their designs</li>
+        <li><strong>Community Maintainers:</strong> Volunteers helping with reviews and support</li>
+      </ul>
+      
+      <h3 style="margin-bottom: 0.5rem; color: var(--fg);">Open Source</h3>
+      <p style="margin-bottom: 1rem;">All templates are released under the <a href="https://github.com/NeuroHackademy2025/NeuroSites/blob/main/LICENSE" style="color: var(--accent); text-decoration: underline;">CC BY 4.0 license</a>, making them free to use, modify, and share. We encourage adaptation and improvement of all designs.</p>
+      
+      <p>Special thanks to the <a href="https://neurohackademy.org/" style="color: var(--accent); text-decoration: underline;">Neurohackademy</a> community for fostering innovation and collaboration in neuroscience tooling.</p>
+    </div>
   </section>
 
   <footer id="contact">
@@ -433,8 +530,10 @@
         <p>All templates are licensed under CC BY 4.0. Use them freely, just give credit!</p>
         <div class="footer-links">
           <a href="https://github.com/NeuroHackademy2025/NeuroSites" target="_blank" rel="noopener">GitHub Repository</a>
-          <a href="https://github.com/NeuroHackademy2025/NeuroSites/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contribute</a>
-          <a href="https://github.com/NeuroHackademy2025/NeuroSites/issues" target="_blank" rel="noopener">Report Issues</a>
+          <a href="#learn">Guide</a>
+          <a href="#contact">Support</a>
+          <a href="#contribute">Contribute Templates</a>
+          <a href="#about">About Us</a>
           <a href="https://github.com/NeuroHackademy2025/NeuroSites/blob/main/LICENSE" target="_blank" rel="noopener">License</a>
         </div>
       </div>
