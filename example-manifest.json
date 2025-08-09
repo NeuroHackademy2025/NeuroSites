@@ -1,0 +1,19 @@
+{
+  "title": "Modern Lab Website",
+  "description": "A clean and modern lab website template with sections for research, publications, and team members.",
+  "category": "Lab Websites",
+  "tags": ["Research", "Publications", "Team"],
+  "style": "Modern",
+  "theme": "Blue",
+  "features": [
+    "Responsive Design",
+    "Publication Gallery",
+    "Team Profiles",
+    "Research Showcase"
+  ],
+  "technologies": ["HTML5", "CSS3", "JavaScript"],
+  "difficulty": "Beginner",
+  "author": "NeuroSites Team",
+  "version": "1.0.0",
+  "license": "CC BY 4.0"
+}
