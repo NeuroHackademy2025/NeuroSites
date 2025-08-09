@@ -227,14 +227,38 @@
     .btn { padding: .65rem 1rem; border-radius: 10px; border: 1px solid rgba(255,255,255,.2); background: transparent; color: var(--fg); cursor: pointer; }
     .btn:hover { background: rgba(250,253,255,.08); }
 
-    /* ====== Template Cards ====== */
-    main .search-filter { background: var(--fg); color: #101532; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(16, 21, 50, 0.15); margin-bottom: 3rem; }
+    /* ====== Search Template Cards ====== */
+    main .search-filter { background: var(--fg); color: #101532; padding: 0; border-radius: 15px; box-shadow: 0 10px 30px rgba(16, 21, 50, 0.15); margin-bottom: 3rem; overflow: hidden; }
+    
+    /* Category Tabs */
+    .filter-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); background: rgba(250, 253, 255, 0.95); }
+    .filter-tab { 
+      padding: 1rem 1.5rem; border: none; background: transparent; color: #5a6b7a; 
+      cursor: pointer; transition: all .3s ease; font-size: .9rem; font-weight: 500;
+      border-bottom: 3px solid transparent; position: relative; flex: 1; text-align: center;
+    }
+    .filter-tab:hover { background: rgba(98, 136, 167, 0.1); color: var(--accent); }
+    .filter-tab.active { 
+      background: rgba(98, 136, 167, 0.15); color: var(--accent); 
+      border-bottom-color: var(--accent); font-weight: 600;
+    }
+    
+    /* Search and Filter Section */
+    .search-section { padding: 2rem; }
     .search-bar { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: center; flex-wrap: wrap; }
-    #searchInput { flex: 1; padding: 12px 20px; border: 2px solid var(--border); border-radius: 25px; font-size: 1rem; outline: none; transition: border-color .3s ease; min-width: 200px; background: var(--fg); }
+    .search-input-container { position: relative; flex: 1; min-width: 200px; }
+    #searchInput { 
+      width: 100%; padding: 12px 20px 12px 50px; border: 2px solid var(--border); 
+      border-radius: 25px; font-size: 1rem; outline: none; transition: border-color .3s ease; 
+      background: var(--fg);
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23101532' viewBox='0 0 16 16'%3e%3cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat; 
+      background-position: 15px center; 
+      background-size: 20px;
+    }
     #searchInput:focus { border-color: var(--accent); }
     
-    /* Dropdown Filters */
-    .filter-dropdowns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .filter-dropdowns { display: flex; gap: 1rem; flex-wrap: wrap; }
     .dropdown-container { position: relative; min-width: 150px; }
     .dropdown-select { 
       width: 100%; padding: 10px 40px 10px 15px; border: 2px solid var(--border); 
@@ -244,10 +268,6 @@
       background-repeat: no-repeat; background-position: right 12px center; background-size: 12px;
     }
     .dropdown-select:hover, .dropdown-select:focus { border-color: var(--accent); }
-    
-    .filter-buttons { display: flex; gap: .5rem; flex-wrap: wrap; }
-    .filter-btn { padding: 8px 16px; border: 2px solid var(--border); background: var(--fg); border-radius: 20px; cursor: pointer; transition: all .3s ease; font-size: .9rem; color: var(--bg); }
-    .filter-btn:hover, .filter-btn.active { background: var(--accent); color: var(--fg); border-color: var(--accent); }
 
     .templates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
     .template-card { background: var(--fg); color: var(--bg); border-radius: 15px; box-shadow: 0 10px 30px rgba(16, 21, 50, 0.15); overflow: hidden; transition: transform .3s ease, box-shadow .3s ease; cursor: pointer; }
@@ -350,41 +370,45 @@
   <main id="templates">
     <div class="container">
       <div class="search-filter">
-        <div class="search-bar">
-          <input type="text" id="searchInput" placeholder="Search templates..." />
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-category="all">All Templates</button>
+          <button class="filter-tab" data-category="Event Promotions">Event Promotions</button>
+          <button class="filter-tab" data-category="Lab Websites">Lab Websites</button>
+          <button class="filter-tab" data-category="Personal Pages">Personal Pages</button>
+          <button class="filter-tab" data-category="Package Wikis">Package Wikis</button>
         </div>
-        <div class="filter-dropdowns">
-          <div class="dropdown-container">
-            <select class="dropdown-select" id="tagFilter">
-              <option value="all">All Tags</option>
-            </select>
+        <div class="search-section">
+          <div class="search-bar">
+            <div class="search-input-container">
+              <input type="text" id="searchInput" placeholder="Find your next website template..." />
+            </div>
           </div>
-          <div class="dropdown-container">
-            <select class="dropdown-select" id="styleFilter">
-              <option value="all">All Styles</option>
-              <option value="modern">Modern</option>
-              <option value="minimal">Minimal</option>
-              <option value="clean">Clean</option>
-              <option value="professional">Professional</option>
-              <option value="academic">Academic</option>
-            </select>
+          <div class="filter-dropdowns">
+            <div class="dropdown-container">
+              <select class="dropdown-select" id="tagFilter">
+                <option value="all">All Tags</option>
+              </select>
+            </div>
+            <div class="dropdown-container">
+              <select class="dropdown-select" id="styleFilter">
+                <option value="all">All Styles</option>
+                <option value="modern">Modern</option>
+                <option value="minimal">Minimal</option>
+                <option value="clean">Clean</option>
+                <option value="professional">Professional</option>
+                <option value="academic">Academic</option>
+              </select>
+            </div>
+            <div class="dropdown-container">
+              <select class="dropdown-select" id="themeFilter">
+                <option value="all">All Themes</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="blue">Blue</option>
+                <option value="neutral">Neutral</option>
+              </select>
+            </div>
           </div>
-          <div class="dropdown-container">
-            <select class="dropdown-select" id="themeFilter">
-              <option value="all">All Themes</option>
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-              <option value="blue">Blue</option>
-              <option value="neutral">Neutral</option>
-            </select>
-          </div>
-        </div>
-        <div class="filter-buttons">
-          <button class="filter-btn active" data-category="all">All</button>
-          <button class="filter-btn" data-category="Event Promotions">Event Promotions</button>
-          <button class="filter-btn" data-category="Lab Websites">Lab Websites</button>
-          <button class="filter-btn" data-category="Personal Pages">Personal Pages</button>
-          <button class="filter-btn" data-category="Package Wikis">Package Wikis</button>
         </div>
       </div>
       <div id="templatesContainer"><div class="loading">Loading templates...</div></div>
@@ -523,7 +547,7 @@
     }
 
     function setupFilters(){
-      const filterContainer = document.querySelector('.filter-buttons');
+      const filterContainer = document.querySelector('.filter-tabs');
       filterContainer.addEventListener('click', (e)=>{
         const btn = e.target.closest('button');
         if (!btn) return;
@@ -609,7 +633,7 @@
 
     function updateFilterButtons() {
       const categories = [...new Set(templates.map(t => t.category))];
-      const filterContainer = document.querySelector('.filter-buttons');
+      const filterContainer = document.querySelector('.filter-tabs');
       
       // "All" button and add category-specific buttons
       const allButton = filterContainer.querySelector('[data-category="all"]');
@@ -618,11 +642,11 @@
       
       categories.forEach(category => {
         const button = document.createElement('button');
-        button.className = 'filter-btn';
+        button.className = 'filter-tab';
         button.dataset.category = category;
         button.textContent = category;
         button.addEventListener('click', (e) => {
-          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
           e.target.classList.add('active');
           currentFilter = e.target.dataset.category;
           renderTemplates();
