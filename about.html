@@ -92,6 +92,38 @@
     .highlight-box{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem; margin:1rem 0}
     .highlight-box strong{color:var(--fg)}
 
+    /* Feature cards grid */
+    .feature-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.2rem; margin:1.5rem 0}
+    .feature-card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.3rem; transition:transform .2s, box-shadow .2s}
+    .feature-card:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,.2)}
+    .feature-card h4{margin:0 0 .5rem 0; color:var(--fg); font-size:1.1rem}
+    .feature-card p{margin:0; color:var(--muted); font-size:.95rem}
+
+    /* Info boxes */
+    .info-box{background:rgba(98,136,167,.1); border:1px solid rgba(98,136,167,.3); border-radius:12px; padding:1.2rem; margin:1rem 0}
+    .info-box h4{margin:0 0 .5rem 0; color:var(--fg)}
+    .info-box p{margin:0; color:var(--muted)}
+
+    /* Contributor grid */
+    .contributor-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.2rem; margin:1.5rem 0}
+    .contributor-card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.2rem}
+    .contributor-card h4{margin:0 0 .8rem 0; color:var(--accent); font-size:1.1rem}
+    .contributor-card ul{margin:0; padding-left:1.2rem}
+    .contributor-card li{margin:.4rem 0; font-size:.95rem}
+
+    /* Impact stats grid */
+    .stats-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; margin:1.5rem 0}
+    .stat-card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem; text-align:center}
+    .stat-card h4{margin:0 0 .5rem 0; color:var(--accent)}
+    .stat-card p{margin:0; color:var(--muted); font-size:.9rem}
+
+    /* Action cards */
+    .action-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; margin:1.5rem 0}
+    .action-card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.2rem; transition:transform .2s}
+    .action-card:hover{transform:translateY(-2px)}
+    .action-card h4{margin:0 0 .5rem 0; color:var(--fg)}
+    .action-card p{margin:0; color:var(--muted); font-size:.9rem}
+
     /* Footer */
     footer{background:rgba(250,253,255,.95); backdrop-filter:blur(10px); padding:3rem 0; margin-top:3rem; text-align:center}
     .footer-content{color:#5a6b7a; line-height:1.8}
@@ -167,44 +199,71 @@
     <p>During the hackathon, participants identified a common need in the community: accessible, professional website templates tailored for neuroscience research. The idea for NeuroSites was born from discussions about how many researchers struggle with web development, often resorting to basic templates that don't reflect the quality and innovation of their work.</p>
 
     <h2>What Makes Us Different</h2>
-    <ul>
-      <li><strong>Neuroscience-Focused:</strong> Templates designed specifically for research contexts</li>
-      <li><strong>Community-Driven:</strong> Built by researchers, for researchers</li>
-      <li><strong>Open Source:</strong> Completely free and transparent</li>
-      <li><strong>High Quality:</strong> Professional designs that enhance credibility</li>
-      <li><strong>Easy to Use:</strong> No coding experience required for basic customization</li>
-      <li><strong>Responsive:</strong> Works perfectly on all devices</li>
-    </ul>
+    <p>NeuroSites stands out in the crowded field of website templates by focusing specifically on the needs of the neuroscience community:</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Neuroscience-Focused</h4>
+        <p>Templates designed specifically for research contexts, with layouts optimized for presenting scientific work, publications, and lab information.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Community-Driven</h4>
+        <p>Built by researchers, for researchers. Every template comes from real-world needs and experiences in the neuroscience community.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Open Source</h4>
+        <p>Completely free and transparent. All code is available for inspection, modification, and improvement by the community.</p>
+      </div>
+      <div class="feature-card">
+        <h4>High Quality</h4>
+        <p>Professional designs that enhance credibility and help researchers present their work in the best possible light.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Easy to Use</h4>
+        <p>No coding experience required for basic customization. Simple instructions get you up and running quickly.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Responsive</h4>
+        <p>Works perfectly on all devices - desktop, tablet, and mobile. Your site looks great everywhere.</p>
+      </div>
+    </div>
 
     <h1>Contributors</h1>
-    <p>NeuroSites is made possible by the dedication of our community contributors:</p>
+    <p>NeuroSites is made possible by the dedication of our community contributors across multiple roles:</p>
     
-    <h3>Project Founders</h3>
-    <ul>
-      <li><strong>Neurohackademy 2025 Participants</strong> - Initial concept and development</li>
-      <li><strong>Summer School Mentors</strong> - Guidance and technical leadership</li>
-    </ul>
-
-    <h3>Core Development Team</h3>
-    <ul>
-      <li><strong>Community Developers</strong> - Open source contributors from the neuroscience community</li>
-      <li><strong>Design Contributors</strong> - Researchers and designers sharing their expertise</li>
-      <li><strong>Technical Reviewers</strong> - Ensuring quality and compatibility</li>
-    </ul>
-
-    <h3>Template Contributors</h3>
-    <ul>
-      <li><strong>Research Labs</strong> - Sharing their website designs</li>
-      <li><strong>Individual Researchers</strong> - Contributing personal page templates</li>
-      <li><strong>Web Developers</strong> - Creating specialized templates for the community</li>
-    </ul>
-
-    <h3>Community Maintainers</h3>
-    <ul>
-      <li><strong>Issue Triagers</strong> - Helping with bug reports and feature requests</li>
-      <li><strong>Documentation Writers</strong> - Improving guides and instructions</li>
-      <li><strong>Code Reviewers</strong> - Ensuring code quality and security</li>
-    </ul>
+    <div class="contributor-grid">
+      <div class="contributor-card">
+        <h4>Project Founders</h4>
+        <ul>
+          <li><strong>Neurohackademy 2025 Participants</strong> - Initial concept and development</li>
+          <li><strong>Summer School Mentors</strong> - Guidance and technical leadership</li>
+        </ul>
+      </div>
+      <div class="contributor-card">
+        <h4>Core Development Team</h4>
+        <ul>
+          <li><strong>Community Developers</strong> - Open source contributors from the neuroscience community</li>
+          <li><strong>Design Contributors</strong> - Researchers and designers sharing their expertise</li>
+          <li><strong>Technical Reviewers</strong> - Ensuring quality and compatibility</li>
+        </ul>
+      </div>
+      <div class="contributor-card">
+        <h4>Template Contributors</h4>
+        <ul>
+          <li><strong>Research Labs</strong> - Sharing their website designs</li>
+          <li><strong>Individual Researchers</strong> - Contributing personal page templates</li>
+          <li><strong>Web Developers</strong> - Creating specialized templates for the community</li>
+        </ul>
+      </div>
+      <div class="contributor-card">
+        <h4>Community Maintainers</h4>
+        <ul>
+          <li><strong>Issue Triagers</strong> - Helping with bug reports and feature requests</li>
+          <li><strong>Documentation Writers</strong> - Improving guides and instructions</li>
+          <li><strong>Code Reviewers</strong> - Ensuring code quality and security</li>
+        </ul>
+      </div>
+    </div>
 
     <h1>Open Source Commitment</h1>
     <p>All templates are released under the <a href="https://github.com/NeuroHackademy2025/NeuroSites/blob/main/LICENSE" target="_blank" rel="noopener">CC BY 4.0 license</a>, making them free to use, modify, and share. We encourage adaptation and improvement of all designs.</p>
@@ -215,36 +274,86 @@
     </div>
 
     <h2>Impact</h2>
-    <p>Since our launch, NeuroSites has:</p>
-    <ul>
-      <li>Provided templates for dozens of research websites</li>
-      <li>Saved researchers countless hours of development time</li>
-      <li>Improved the online presence of neuroscience organizations</li>
-      <li>Fostered collaboration between technical and research communities</li>
-      <li>Contributed to the broader open science movement</li>
-    </ul>
+    <p>Since our launch, NeuroSites has made a meaningful difference in the neuroscience community:</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h4>Research Websites</h4>
+        <p>Provided templates for dozens of research websites across various neuroscience fields</p>
+      </div>
+      <div class="stat-card">
+        <h4>Time Saved</h4>
+        <p>Saved researchers countless hours of development time that can be devoted to research</p>
+      </div>
+      <div class="stat-card">
+        <h4>Online Presence</h4>
+        <p>Improved the professional online presence of neuroscience organizations worldwide</p>
+      </div>
+      <div class="stat-card">
+        <h4>Community Building</h4>
+        <p>Fostered collaboration between technical and research communities</p>
+      </div>
+      <div class="stat-card">
+        <h4>Open Science</h4>
+        <p>Contributed to the broader open science movement through accessible tools</p>
+      </div>
+    </div>
 
     <h2>Future Goals</h2>
-    <p>We're continuously working to:</p>
-    <ul>
-      <li>Expand our template collection across more specialties</li>
-      <li>Improve accessibility and inclusion in all designs</li>
-      <li>Develop better customization tools</li>
-      <li>Create educational resources for web development</li>
-      <li>Build partnerships with neuroscience organizations</li>
-      <li>Support emerging web technologies and standards</li>
-    </ul>
+    <p>We're continuously working to expand and improve NeuroSites:</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Expand Template Collection</h4>
+        <p>Grow our library across more neuroscience specialties and research contexts</p>
+      </div>
+      <div class="feature-card">
+        <h4>Improve Accessibility</h4>
+        <p>Enhance accessibility and inclusion in all designs to reach more researchers</p>
+      </div>
+      <div class="feature-card">
+        <h4>Better Customization</h4>
+        <p>Develop better tools and interfaces for easy template customization</p>
+      </div>
+      <div class="feature-card">
+        <h4>Educational Resources</h4>
+        <p>Create comprehensive educational resources for web development in research</p>
+      </div>
+      <div class="feature-card">
+        <h4>Strategic Partnerships</h4>
+        <p>Build partnerships with neuroscience organizations and institutions</p>
+      </div>
+      <div class="feature-card">
+        <h4>Modern Technologies</h4>
+        <p>Support emerging web technologies and maintain current standards</p>
+      </div>
+    </div>
 
     <h2>Get Involved</h2>
     <p>NeuroSites thrives because of community involvement. Here's how you can contribute:</p>
     
-    <ul>
-      <li><strong>Use Our Templates:</strong> The best way to support us is to use our templates for your projects</li>
-      <li><strong>Share Your Designs:</strong> <a href="contribute.html">Contribute your own templates</a> to help others</li>
-      <li><strong>Report Issues:</strong> Help us improve by <a href="support.html">reporting bugs or suggesting features</a></li>
-      <li><strong>Spread the Word:</strong> Tell other researchers about NeuroSites</li>
-      <li><strong>Join Development:</strong> Contribute code, documentation, or design skills</li>
-    </ul>
+    <div class="action-grid">
+      <div class="action-card">
+        <h4>Use Our Templates</h4>
+        <p>The best way to support us is to use our templates for your research projects</p>
+      </div>
+      <div class="action-card">
+        <h4>Share Your Designs</h4>
+        <p><a href="contribute.html">Contribute your own templates</a> to help other researchers</p>
+      </div>
+      <div class="action-card">
+        <h4>Report Issues</h4>
+        <p>Help us improve by <a href="support.html">reporting bugs or suggesting features</a></p>
+      </div>
+      <div class="action-card">
+        <h4>Spread the Word</h4>
+        <p>Tell other researchers about NeuroSites and help grow our community</p>
+      </div>
+      <div class="action-card">
+        <h4>Join Development</h4>
+        <p>Contribute code, documentation, or design skills to enhance the platform</p>
+      </div>
+    </div>
 
     <h1>Acknowledgments</h1>
     <p>Special thanks to:</p>
