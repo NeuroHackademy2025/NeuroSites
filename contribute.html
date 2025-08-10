@@ -94,6 +94,37 @@
     .highlight-box{background:rgba(250,253,255,.08); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin:1.5rem 0}
     .highlight-box h3{margin-top:0}
 
+    /* Feature cards grid */
+    .feature-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.2rem; margin:1.5rem 0}
+    .feature-card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.3rem; transition:transform .2s, box-shadow .2s}
+    .feature-card:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,.2)}
+    .feature-card h4{margin:0 0 .5rem 0; color:var(--fg); font-size:1.1rem}
+    .feature-card p{margin:0; color:var(--muted); font-size:.95rem}
+
+    /* Step boxes */
+    .steps-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; margin:1.5rem 0}
+    .step-box{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.2rem; position:relative}
+    .step-box::before{content:attr(data-step); position:absolute; top:-12px; left:16px; background:var(--accent); color:var(--fg); padding:.3rem .7rem; border-radius:20px; font-size:.8rem; font-weight:bold}
+    .step-box h4{margin:0 0 .5rem 0; color:var(--fg)}
+    .step-box p{margin:0; color:var(--muted); font-size:.9rem}
+
+    /* Info boxes with icons */
+    .info-box{background:rgba(98,136,167,.1); border:1px solid rgba(98,136,167,.3); border-radius:12px; padding:1.2rem; margin:1rem 0; position:relative}
+    .info-box::before{content:'ℹ'; position:absolute; top:1rem; left:1rem; font-size:1.2rem; color:var(--accent); font-weight:bold}
+    .info-box.warning{background:rgba(255,193,7,.1); border-color:rgba(255,193,7,.3)}
+    .info-box.warning::before{content:'⚠'; color:#ffc107}
+    .info-box.success{background:rgba(40,167,69,.1); border-color:rgba(40,167,69,.3)}
+    .info-box.success::before{content:'✓'; color:#28a745}
+    .info-box h4{margin:0 0 .5rem 2rem; color:var(--fg)}
+    .info-box p{margin:0; padding-left:2rem; color:var(--muted)}
+
+    /* Category cards */
+    .category-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin:1.5rem 0}
+    .category-card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem; text-align:center; transition:transform .2s}
+    .category-card:hover{transform:translateY(-2px)}
+    .category-card h4{margin:0 0 .5rem 0; color:var(--accent)}
+    .category-card p{margin:0; color:var(--muted); font-size:.9rem}
+
     /* Code blocks */
     pre{background:rgba(250,253,255,.08); border:1px solid var(--border); border-radius:10px; padding:.9rem; overflow:auto; margin:1rem 0}
     code{font-family:Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace; font-size:.9rem}
@@ -165,7 +196,7 @@
   <main>
     <div class="highlight-box">
       <h3>Ready to contribute?</h3>
-      <p>Start by forking our repository and reading our detailed contributing guidelines.</p>
+      <p>Start by forking our repository and reading our detailed contributing guidelines. Your templates help make neuroscience research more accessible!</p>
       <a href="https://github.com/NeuroHackademy2025/NeuroSites" class="cta-button" target="_blank" rel="noopener">
         Fork Repository
       </a>
@@ -174,7 +205,22 @@
     <h2>Template Requirements</h2>
     <p>To ensure quality and consistency, all template submissions must meet these requirements:</p>
     
-    <h3>Technical Requirements</h3>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Technical Requirements</h4>
+        <p>Clean HTML/CSS, responsive design, cross-browser compatibility, optimized performance, and accessibility best practices.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Content Requirements</h4>
+        <p>Relevant to neuroscience communities, professional quality design, generic placeholder content, no personal information.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Documentation Requirements</h4>
+        <p>Clear README.md, preview image, manifest.json metadata, and CC BY 4.0 compatible license.</p>
+      </div>
+    </div>
+
+    <h3>Technical Standards</h3>
     <ul>
       <li><strong>Clean HTML/CSS:</strong> Well-structured, semantic HTML with organized CSS</li>
       <li><strong>Responsive Design:</strong> Works well on desktop, tablet, and mobile devices</li>
@@ -183,71 +229,69 @@
       <li><strong>Accessibility:</strong> Follows basic accessibility best practices</li>
     </ul>
 
-    <h3>Content Requirements</h3>
-    <ul>
-      <li><strong>Relevance:</strong> Suitable for neuroscience or academic communities</li>
-      <li><strong>Professional Quality:</strong> Clean, polished design appropriate for research contexts</li>
-      <li><strong>Placeholder Content:</strong> Generic content that users can easily customize</li>
-      <li><strong>No Personal Information:</strong> Remove any personal data before submission</li>
-    </ul>
-
-    <h3>Documentation Requirements</h3>
-    <ul>
-      <li><strong>README.md:</strong> Clear instructions for customization and deployment</li>
-      <li><strong>Preview Image:</strong> preview.png (recommended 1200x800px)</li>
-      <li><strong>Manifest File:</strong> manifest.json with template metadata</li>
-      <li><strong>License:</strong> Must be compatible with CC BY 4.0</li>
-    </ul>
+    <div class="info-box">
+      <h4>Quality Tip</h4>
+      <p>Test your template on multiple devices and browsers before submission. Tools like BrowserStack or simple device testing can help ensure compatibility.</p>
+    </div>
 
     <h2>Submission Process</h2>
     
-    <h3>Step 1: Prepare Your Template</h3>
-    <ol>
-      <li>Create a clean, well-organized template</li>
-      <li>Test it thoroughly across different devices and browsers</li>
-      <li>Remove any personal information or proprietary content</li>
-      <li>Write clear documentation</li>
-    </ol>
+    <div class="steps-grid">
+      <div class="step-box" data-step="1">
+        <h4>Prepare Template</h4>
+        <p>Create, test thoroughly, remove personal info, and write clear documentation for your template.</p>
+      </div>
+      <div class="step-box" data-step="2">
+        <h4>Fork & Clone</h4>
+        <p>Fork the NeuroSites repository, clone to your machine, and create a new branch.</p>
+      </div>
+      <div class="step-box" data-step="3">
+        <h4>Add Template</h4>
+        <p>Navigate to category folder, create new template folder, add files and documentation.</p>
+      </div>
+      <div class="step-box" data-step="4">
+        <h4>Submit PR</h4>
+        <p>Commit changes, push to fork, submit pull request with detailed description.</p>
+      </div>
+    </div>
 
-    <h3>Step 2: Fork and Clone</h3>
-    <ol>
-      <li>Fork the <a href="https://github.com/NeuroHackademy2025/NeuroSites" target="_blank" rel="noopener">NeuroSites repository</a></li>
-      <li>Clone your fork to your local machine</li>
-      <li>Create a new branch for your template</li>
-    </ol>
-
-    <h3>Step 3: Add Your Template</h3>
-    <ol>
-      <li>Navigate to the appropriate category folder in /templates/</li>
-      <li>Create a new folder for your template (use kebab-case naming)</li>
-      <li>Add all your template files</li>
-      <li>Include the required documentation files</li>
-    </ol>
-
-    <h3>Step 4: Submit Pull Request</h3>
-    <ol>
-      <li>Commit your changes with a clear, descriptive message</li>
-      <li>Push to your fork</li>
-      <li>Submit a pull request with a detailed description</li>
-      <li>Our team will review and provide feedback</li>
-    </ol>
+    <div class="info-box warning">
+      <h4>Important Note</h4>
+      <p>Make sure to test your template on a clean environment to ensure all dependencies are included and paths are correct.</p>
+    </div>
 
     <h2>Template Categories</h2>
-    <p>We organize templates into these main categories:</p>
+    <p>We organize templates into these main categories. Choose the most appropriate one for your submission:</p>
     
-    <ul>
-      <li><strong>Lab Websites:</strong> Research group homepages, project sites</li>
-      <li><strong>Personal Pages:</strong> Academic portfolios, researcher profiles</li>
-      <li><strong>Event Promotions:</strong> Conference sites, workshop pages</li>
-      <li><strong>Package Wikis:</strong> Software documentation, package sites</li>
-    </ul>
+    <div class="category-grid">
+      <div class="category-card">
+        <h4>Lab Websites</h4>
+        <p>Research group homepages, project sites, lab portfolios</p>
+      </div>
+      <div class="category-card">
+        <h4>Personal Pages</h4>
+        <p>Academic portfolios, researcher profiles, CV sites</p>
+      </div>
+      <div class="category-card">
+        <h4>Event Promotions</h4>
+        <p>Conference sites, workshop pages, symposium sites</p>
+      </div>
+      <div class="category-card">
+        <h4>Package Wikis</h4>
+        <p>Software documentation, package sites, tool guides</p>
+      </div>
+    </div>
 
-    <p>If your template doesn't fit these categories, suggest a new one in your pull request!</p>
+    <div class="info-box">
+      <h4>New Category?</h4>
+      <p>If your template doesn't fit these categories, suggest a new one in your pull request! We're always open to expanding our collection.</p>
+    </div>
 
     <h2>Manifest File Format</h2>
-    <p>Include a manifest.json file with your template containing:</p>
+    <p>Include a manifest.json file with your template containing the following metadata:</p>
     
     <div class="highlight-box">
+      <h4>Example manifest.json</h4>
       <pre><code>{
   "title": "Your Template Name",
   "description": "Brief description of the template",
@@ -262,36 +306,76 @@
     </div>
 
     <h2>Review Process</h2>
-    <p>Once you submit a pull request, our team will:</p>
+    <p>Once you submit a pull request, our team follows a thorough review process:</p>
     
-    <ol>
-      <li><strong>Initial Review:</strong> Check that all requirements are met</li>
-      <li><strong>Technical Review:</strong> Test functionality and responsiveness</li>
-      <li><strong>Quality Review:</strong> Assess design quality and code organization</li>
-      <li><strong>Feedback:</strong> Provide suggestions for improvements if needed</li>
-      <li><strong>Approval:</strong> Merge approved templates into the main repository</li>
-    </ol>
+    <div class="steps-grid">
+      <div class="step-box" data-step="1">
+        <h4>Initial Review</h4>
+        <p>Check that all requirements are met and documentation is complete.</p>
+      </div>
+      <div class="step-box" data-step="2">
+        <h4>Technical Review</h4>
+        <p>Test functionality, responsiveness, and cross-browser compatibility.</p>
+      </div>
+      <div class="step-box" data-step="3">
+        <h4>Quality Review</h4>
+        <p>Assess design quality, code organization, and user experience.</p>
+      </div>
+      <div class="step-box" data-step="4">
+        <h4>Feedback & Approval</h4>
+        <p>Provide improvement suggestions or approve for merge into main repository.</p>
+      </div>
+    </div>
 
-    <h2>Recognition</h2>
-    <p>Contributors are recognized in several ways:</p>
+    <div class="info-box success">
+      <h4>Review Timeline</h4>
+      <p>Most reviews are completed within 5-7 business days. Complex templates or those requiring changes may take longer.</p>
+    </div>
+
+    <h2>Recognition & Rewards</h2>
+    <p>We believe in recognizing our amazing contributors! Here's how we say thank you:</p>
     
-    <ul>
-      <li>Listed in the template's metadata and README</li>
-      <li>Added to our contributors list</li>
-      <li>Acknowledged in release notes</li>
-      <li>Invited to join our maintainer team (for regular contributors)</li>
-    </ul>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Template Credit</h4>
+        <p>Your name featured in the template's metadata and README file for all users to see.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Contributors List</h4>
+        <p>Added to our official contributors list and project acknowledgments.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Release Notes</h4>
+        <p>Acknowledged in release notes when your template is published to the community.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Maintainer Invitation</h4>
+        <p>Regular contributors are invited to join our maintainer team with additional privileges.</p>
+      </div>
+    </div>
 
-    <h2>Questions?</h2>
-    <p>If you have questions about contributing, please:</p>
+    <h2>Questions & Support</h2>
+    <p>Need help with your contribution? We're here to support you every step of the way:</p>
     
-    <ul>
-      <li>Check our <a href="https://github.com/NeuroHackademy2025/NeuroSites/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">detailed contributing guide</a></li>
-      <li>Browse <a href="https://github.com/NeuroHackademy2025/NeuroSites/discussions" target="_blank" rel="noopener">existing discussions</a></li>
-      <li>Start a new discussion or <a href="support.html">submit an issue</a></li>
-    </ul>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Contributing Guide</h4>
+        <p><a href="https://github.com/NeuroHackademy2025/NeuroSites/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Detailed contributing guidelines</a> with step-by-step instructions.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Community Discussions</h4>
+        <p><a href="https://github.com/NeuroHackademy2025/NeuroSites/discussions" target="_blank" rel="noopener">Browse existing discussions</a> or start a new conversation.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Issue Support</h4>
+        <p>Found a bug or need help? <a href="support.html">Submit an issue</a> and we'll help you out.</p>
+      </div>
+    </div>
 
-    <p>We're excited to see what you'll create! Thank you for helping make NeuroSites a valuable resource for the entire community.</p>
+    <div class="highlight-box">
+      <h3>Thank You!</h3>
+      <p>We're incredibly excited to see what you'll create! Your contributions help make NeuroSites a valuable resource for the entire neuroscience community. Every template, bug fix, and suggestion makes a difference.</p>
+    </div>
   </main>
 
   <footer>
