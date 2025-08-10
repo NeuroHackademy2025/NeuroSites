@@ -89,6 +89,14 @@
     .num{width:48px; height:48px; border-radius:50%; display:grid; place-items:center; font-weight:800; background:radial-gradient(120% 120% at 30% 20%, rgba(98,136,167,.35), rgba(98,136,167,.12)); border:1px solid rgba(98,136,167,.45)}
     .step h4{margin:0 0 .2rem 0}
 
+    /* Step boxes grid */
+    .steps-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.2rem; margin:1.5rem 0}
+    .step-box{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.3rem; position:relative; transition:transform .2s, box-shadow .2s}
+    .step-box:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,.2)}
+    .step-box::before{content:attr(data-step); position:absolute; top:-10px; left:20px; width:32px; height:32px; background:var(--accent); border-radius:50%; display:grid; place-items:center; font-weight:800; font-size:.9rem; color:var(--fg)}
+    .step-box h4{margin:0 0 .5rem 0; color:var(--fg); font-size:1.1rem; padding-top:.5rem}
+    .step-box p{margin:0; color:var(--muted); font-size:.95rem}
+
     /* Callouts */
     .callout{background:rgba(250,253,255,.08); border:1px solid var(--border); border-radius:12px; padding:1rem; margin:1rem 0}
     .callout strong{color:var(--fg)}
@@ -195,27 +203,18 @@
 
     <main>
       <h2>Quick Start</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="num">1</div>
-          <div>
-            <h4>Browse</h4>
-            <p>Use category tabs (Lab Websites, Personal Pages, Event Promotions, Package Wikis), search, and filters to narrow options on the <a href="index.html">Templates</a> page.</p>
-          </div>
+      <div class="steps-grid">
+        <div class="step-box" data-step="1">
+          <h4>Browse</h4>
+          <p>Use category tabs (Lab Websites, Personal Pages, Event Promotions, Package Wikis), search, and filters to narrow options on the <a href="index.html">Templates</a> page.</p>
         </div>
-        <div class="step">
-          <div class="num">2</div>
-          <div>
-            <h4>Preview</h4>
-            <p>Click <strong>View Template</strong> to see layout and interactions before you commit.</p>
-          </div>
+        <div class="step-box" data-step="2">
+          <h4>Preview</h4>
+          <p>Click <strong>View Template</strong> to see layout and interactions before you commit.</p>
         </div>
-        <div class="step">
-          <div class="num">3</div>
-          <div>
-            <h4>Use It</h4>
-            <p>Open <strong>View Code</strong> on GitHub, download the folder, and make it yours.</p>
-          </div>
+        <div class="step-box" data-step="3">
+          <h4>Use It</h4>
+          <p>Open <strong>View Code</strong> on GitHub, download the folder, and make it yours.</p>
         </div>
       </div>
 
