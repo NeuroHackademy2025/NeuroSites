@@ -93,6 +93,34 @@
     .callout{background:rgba(250,253,255,.08); border:1px solid var(--border); border-radius:12px; padding:1rem; margin:1rem 0}
     .callout strong{color:var(--fg)}
 
+    /* Feature cards grid */
+    .feature-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.2rem; margin:1.5rem 0}
+    .feature-card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.3rem; transition:transform .2s, box-shadow .2s}
+    .feature-card:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,.2)}
+    .feature-card h4{margin:0 0 .5rem 0; color:var(--fg); font-size:1.1rem}
+    .feature-card p{margin:0; color:var(--muted); font-size:.95rem}
+
+    /* Info boxes */
+    .info-box{background:rgba(98,136,167,.1); border:1px solid rgba(98,136,167,.3); border-radius:12px; padding:1.2rem; margin:1rem 0}
+    .info-box h4{margin:0 0 .5rem 0; color:var(--fg)}
+    .info-box p{margin:0; color:var(--muted)}
+    .info-box.success{background:rgba(40,167,69,.1); border-color:rgba(40,167,69,.3)}
+
+    /* Publishing options grid */
+    .publish-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; margin:1.5rem 0}
+    .publish-card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.2rem; transition:transform .2s}
+    .publish-card:hover{transform:translateY(-2px)}
+    .publish-card h4{margin:0 0 .5rem 0; color:var(--accent)}
+    .publish-card .badge{display:inline-block; background:rgba(98,136,167,.2); border:1px solid rgba(98,136,167,.4); padding:.2rem .5rem; border-radius:12px; font-size:.75rem; margin-bottom:.5rem}
+    .publish-card ol{margin:.5rem 0; padding-left:1.2rem}
+    .publish-card li{margin:.3rem 0; font-size:.9rem}
+
+    /* Troubleshooting cards */
+    .trouble-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1rem; margin:1.5rem 0}
+    .trouble-card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem}
+    .trouble-card h4{margin:0 0 .5rem 0; color:var(--fg); font-size:1rem}
+    .trouble-card p{margin:0; color:var(--muted); font-size:.9rem}
+
     /* Code + copy */
     pre{background:rgba(250,253,255,.08); border:1px solid var(--border); border-radius:10px; padding:.9rem; overflow:auto; position:relative}
     .copy-btn{position:absolute; top:8px; right:8px; padding:.35rem .55rem; font-size:.8rem; border-radius:8px; border:1px solid var(--border); background:rgba(0,0,0,.25); color:var(--fg); cursor:pointer}
@@ -139,12 +167,12 @@
   <div class="dropdown-overlay" id="dropdownOverlay" role="dialog" aria-modal="true" aria-label="Site menu">
     <div class="dropdown-panel">
       <div class="menu-grid">
-        <a class="menu-card" href="guide.html"><h4>How to Use</h4><p>Choose template, edit content, GitHub Pages</p></a>
-        <a class="menu-card" href="support.html"><h4>Support & Help</h4><p>NeuroSites help, GitHub Discussions, quick guides</p></a>
-        <a class="menu-card" href="contribute.html"><h4>Contribute</h4><p>NeuroSites PRs, gallery credit, template review</p></a>
-        <a class="menu-card" href="about.html"><h4>About</h4><p>NeuroSites community, open-source, CC-BY-4.0</p></a>
-        <a class="menu-card" href="index.html"><h4>Browse Templates</h4><p>Explore lab sites, personal pages, and package wikis</p></a>
-        <a class="menu-card" href="https://github.com/NeuroHackademy2025/NeuroSites" target="_blank" rel="noopener"><h4>GitHub Repository</h4><p>View source code and contribute</p></a>
+        <a class="menu-card" href="index.html"><h4>Browse Templates</h4><p>Explore lab sites, personal pages, and package wikis.</p></a>
+        <a class="menu-card" href="guide.html"><h4>Guide</h4><p>Find, customize, and deploy templates.</p></a>
+        <a class="menu-card" href="support.html"><h4>Support</h4><p>Get help or report problems.</p></a>
+        <a class="menu-card" href="contribute.html"><h4>Contribute Templates</h4><p>Share your designs with the community.</p></a>
+        <a class="menu-card" href="about.html"><h4>About</h4><p>Our mission and contributors.</p></a>
+        <a class="menu-card" href="https://github.com/NeuroHackademy2025/NeuroSites" target="_blank" rel="noopener"><h4>GitHub Repository</h4><p>View source code and contribute.</p></a>
       </div>
       <div class="overlay-actions" style="display:flex;justify-content:flex-end;margin-top:16px;gap:10px">
         <button class="btn" id="closeOverlay">Close</button>
@@ -158,9 +186,9 @@
         <h1>How to Use NeuroSites Templates</h1>
         <p class="lead">Pick a template, customize the bits you need, and publish. Fast.</p>
         <div class="hero-badges">
-          <span class="badge">Choose Design</span>
-          <span class="badge">Quick Edit</span>
-          <span class="badge">Instant Deploy</span>
+          <span class="badge">Pick Template</span>
+          <span class="badge">Edit Content</span>
+          <span class="badge">One-Click Deploy</span>
         </div>
       </div>
     </header>
@@ -193,8 +221,25 @@
 
       <div class="callout"><strong>Tip:</strong> most templates have a <code>README.md</code> with template-specific notes (sections to edit, image sizes, deployment hints).</div>
 
-      <h2>Customize</h2>
-      <h3>Basics</h3>
+      <h2>Customize Your Template</h2>
+      <p>Once you've chosen a template, here's how to make it your own:</p>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>Content & Text</h4>
+          <p>Edit text directly in <code>index.html</code> and any section files. Replace placeholder content with your own research, bio, or project information.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Images & Media</h4>
+          <p>Replace files in <code>assets/images/</code> with your own photos, logos, or graphics. Update the <code>&lt;img&gt;</code> paths accordingly.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Colors & Branding</h4>
+          <p>Customize the color scheme by tweaking CSS variables, usually found at the top of <code>style.css</code>. Perfect for lab or personal branding.</p>
+        </div>
+      </div>
+
+      <h3>Basic Customization</h3>
       <ul>
         <li><strong>Content:</strong> edit text in <code>index.html</code> (and section files if present).</li>
         <li><strong>Images/Logo:</strong> replace files in <code>assets/images/</code> and update the <code>&lt;img&gt;</code> paths.</li>
@@ -211,6 +256,11 @@
         <li><strong>Fonts:</strong> update the <code>font-family</code> on <code>body</code> or <code>:root</code>.</li>
       </ul>
 
+      <div class="info-box">
+        <h4>Customization Tip</h4>
+        <p>Start with small changes like colors and text before diving into layout modifications. Most templates are designed to work great with minimal adjustments.</p>
+      </div>
+
       <details>
         <summary>Advanced (optional)</summary>
         <ul style="margin-top:.6rem">
@@ -222,33 +272,63 @@
         </ul>
       </details>
 
-      <h2>Publish</h2>
-      <h3>GitHub Pages (free)</h3>
-      <ol>
-        <li>Create a repo and add your files (ensure <code>index.html</code> at the publish root).</li>
-        <li>Settings → Pages → Build from <strong>main</strong> (or <strong>/docs</strong>) → Save.</li>
-        <li>Wait ~2 minutes for the site to go live at <code>username.github.io/repo</code>.</li>
-      </ol>
+      <h2>Publish Your Website</h2>
+      <p>Ready to go live? Here are the best free options for hosting your NeuroSites template:</p>
 
-      <h3>Netlify (free tier)</h3>
-      <ol>
-        <li>Sign in → “Add new site” → <strong>Deploy manually</strong> (drag &amp; drop) or connect Git.</li>
-        <li>Get an instant URL; turn on automatic deploys if using Git.</li>
-      </ol>
+      <div class="publish-grid">
+        <div class="publish-card">
+          <div class="badge">Free</div>
+          <h4>GitHub Pages</h4>
+          <ol>
+            <li>Create a repo and add your files (ensure <code>index.html</code> at the publish root)</li>
+            <li>Settings → Pages → Build from <strong>main</strong> (or <strong>/docs</strong>) → Save</li>
+            <li>Wait ~2 minutes for the site to go live at <code>username.github.io/repo</code></li>
+          </ol>
+        </div>
+        <div class="publish-card">
+          <div class="badge">Free Tier</div>
+          <h4>Netlify</h4>
+          <ol>
+            <li>Sign in → "Add new site" → <strong>Deploy manually</strong> (drag & drop) or connect Git</li>
+            <li>Get an instant URL; turn on automatic deploys if using Git</li>
+          </ol>
+        </div>
+        <div class="publish-card">
+          <div class="badge">Free Tier</div>
+          <h4>Vercel</h4>
+          <ol>
+            <li>Import from GitHub → Framework: <strong>Other/Static</strong></li>
+            <li>Deploy; add a custom domain if you want</li>
+          </ol>
+        </div>
+      </div>
 
-      <h3>Vercel (free tier)</h3>
-      <ol>
-        <li>Import from GitHub → Framework: <strong>Other/Static</strong>.</li>
-        <li>Deploy; add a custom domain if you want.</li>
-      </ol>
+      <div class="info-box success">
+        <h4>Quick Deploy Tip</h4>
+        <p>For the fastest deployment, try Netlify's drag-and-drop feature. Just zip your template folder and drop it on their deployment page!</p>
+      </div>
 
       <h2>Troubleshooting</h2>
-      <ul>
-        <li><strong>404 on Pages:</strong> the selected branch/folder must contain <code>index.html</code> at its publish root.</li>
-        <li><strong>Images not showing:</strong> check file paths and filename casing (GitHub Pages is case-sensitive).</li>
-        <li><strong>CSS not applying:</strong> confirm the <code>&lt;link href="style.css"&gt;</code> path and hard refresh.</li>
-        <li><strong>Fonts look off:</strong> ensure font files/URLs exist and load over HTTPS.</li>
-      </ul>
+      <p>Common issues and how to fix them:</p>
+
+      <div class="trouble-grid">
+        <div class="trouble-card">
+          <h4>404 on Pages</h4>
+          <p>The selected branch/folder must contain <code>index.html</code> at its publish root.</p>
+        </div>
+        <div class="trouble-card">
+          <h4>Images not showing</h4>
+          <p>Check file paths and filename casing (GitHub Pages is case-sensitive).</p>
+        </div>
+        <div class="trouble-card">
+          <h4>CSS not applying</h4>
+          <p>Confirm the <code>&lt;link href="style.css"&gt;</code> path and hard refresh.</p>
+        </div>
+        <div class="trouble-card">
+          <h4>Fonts look off</h4>
+          <p>Ensure font files/URLs exist and load over HTTPS.</p>
+        </div>
+      </div>
 
       <div class="cta">
         <a class="btn primary" href="index.html">Browse Templates</a>
