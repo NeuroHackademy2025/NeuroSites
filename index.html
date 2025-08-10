@@ -271,11 +271,12 @@
     main .search-filter { background: transparent; color: inherit; padding: 0; border-radius: 0; box-shadow: none; margin-bottom: 0; overflow: visible; }
     
     /* Category Tabs */
-    .filter-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); background: #E3EBF2; }
+    .filter-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); background: #E3EBF2; margin: 0; padding: 0; }
     .filter-tab { 
       padding: 1rem 1rem; border: none; background: transparent; color: #5a6b7a; 
-      cursor: pointer; transition: all .3s ease; font-size: 1rem; font-weight: 500;
+      cursor: pointer; transition: all .3s ease; font-size: 1.1rem; font-weight: 500;
       border-bottom: 3px solid transparent; position: relative; flex: 1; text-align: center;
+      margin: 0; border-radius: 0;
     }
     .filter-tab:hover { background: rgba(98, 136, 167, 0.1); color: var(--accent); }
     .filter-tab.active { 
@@ -456,15 +457,15 @@
   </header>
 
   <main id="templates">
-    <div class="container">
-      <div class="search-filter">
-        <div class="filter-tabs">
-          <button class="filter-tab active" data-category="all">All Templates</button>
-          <button class="filter-tab" data-category="Event Promotions">Event Promotions</button>
-          <button class="filter-tab" data-category="Lab Websites">Lab Websites</button>
-          <button class="filter-tab" data-category="Personal Pages">Personal Pages</button>
-          <button class="filter-tab" data-category="Package Wikis">Package Wikis</button>
-        </div>
+    <div class="search-filter">
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-category="all">All Templates</button>
+        <button class="filter-tab" data-category="Event Promotions">Event Promotions</button>
+        <button class="filter-tab" data-category="Lab Websites">Lab Websites</button>
+        <button class="filter-tab" data-category="Personal Pages">Personal Pages</button>
+        <button class="filter-tab" data-category="Package Wikis">Package Wikis</button>
+      </div>
+      <div class="container">
         <div class="search-section">
           <div class="search-bar">
             <div class="search-input-container">
@@ -499,6 +500,8 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="container">
       <div id="templatesContainer"><div class="loading">Loading templates...</div></div>
     </div>
   </main>
